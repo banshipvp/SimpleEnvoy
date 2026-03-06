@@ -1,0 +1,26 @@
+# SimpleEnvoy Configuration
+# Most settings are in the loot/ directory (per-tier YAML files)
+
+# Detection radius fallback when SimpleFactions WarzoneManager is unavailable.
+# Only used if SimpleFactions is not loaded or reflection fails.
+fallback-zone-radius: 100
+
+# Firework interval per chest in ticks (200 ticks = 10 seconds)
+firework-interval-ticks: 200
+
+# Minimum number of players that must be in a zone for an envoy to start there
+min-players-per-zone: 1
+
+# Maximum number of players counted for chest scaling (caps at this count)
+max-player-scale: 10
+
+# Auto-schedule intervals
+schedule:
+  standard-minutes: 30    # spawn, desert, plains
+  heroic-minutes: 90       # nether
+
+# Chest spawn area radius around each center (blocks)
+spawn-radius: 100
+
+# Minimum distance between two envoy chests
+min-chest-distance: 5

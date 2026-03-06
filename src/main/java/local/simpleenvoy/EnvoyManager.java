@@ -334,7 +334,7 @@ public class EnvoyManager {
             }
 
             // Must be solid and not something we'd destroy
-            if (surface.getType() == Material.AIR || surface.getType().isLiquid()) continue;
+            if (surface.isEmpty() || surface.isLiquid()) continue;
 
             // Chest goes one above
             Block chestBlock = world.getBlockAt(x, surface.getY() + 1, z);

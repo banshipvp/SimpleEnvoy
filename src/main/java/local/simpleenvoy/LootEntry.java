@@ -81,7 +81,8 @@ public class LootEntry {
 
     @SuppressWarnings("unchecked")
     public static LootEntry deserialize(Map<?, ?> map) {
-        double chance = ((Number) map.getOrDefault("chance", 0.0)).doubleValue();
+        Object chanceRaw = map.get("chance");
+        double chance = chanceRaw instanceof Number n ? n.doubleValue() : 0.0;
 
         List<ItemStack> items = new ArrayList<>();
         Object rawItems = map.get("items");
@@ -147,8 +148,10 @@ public class LootEntry {
 
     /** Build a real ItemStack from the simple config entries used in loot YAMLs. */
     public static ItemStack buildFromMap(Map<?, ?> itemMap) {
-        String materialName = (String) itemMap.getOrDefault("material", "PAPER");
-        int amount = ((Number) itemMap.getOrDefault("amount", 1)).intValue();
+        Object matRaw = itemMap.get("material");
+        String materialName = matRaw != null ? matRaw.toString() : "PAPER";
+        Object amtRaw = itemMap.get("amount");
+        int amount = amtRaw instanceof Number n ? n.intValue() : 1;
         Material material = Material.matchMaterial(materialName.toUpperCase());
         if (material == null) material = Material.PAPER;
 

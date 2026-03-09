@@ -1,0 +1,68 @@
+rates:
+  common: 50
+  rare: 40
+  legendary: 30
+
+amount: 30
+limit-predefined: true
+collect-cooldown: 10
+collect-global-cooldown: false
+broadcast-collect: true
+timeout-time: 300
+every: 30m
+top-block-finder: heightmap
+send-spawn-message: false
+alert-times:
+  - 30m
+  - 10m
+  - 5s
+  - 3s
+  - 2s
+  - 1s
+times: []
+only-in-global: false
+min-players: 2
+
+random-spawn:
+  enabled: true
+  center: world;0;80;0
+  max-distance:
+    x: 100
+    z: 100
+  min-distance: 20
+  min-height: 10
+  max-height: 255
+  heightmap: MOTION_BLOCKING
+  min-distance-between-crates: 0
+  not-on-blocks:
+    - (?<!s)t?air(?!s)
+    - (leaves)
+    - (sign)
+    - diamond_block
+
+rewards:
+  use-prefix: true
+
+time-format: 1
+
+flare:
+  enabled: false
+  cooldown: 30
+  item:
+    custom-model-data: 0
+    name: '&cEnvoy flare'
+    lore:
+      - '&7Right click with this, to start'
+      - '&7the default envoy!'
+    material: prismarine_shard
+    glow: true
+
+pre-defined-spawns:
+  enabled: false
+  locations:
+    - world;1;80;1
+
+crates:
+  common: 50
+  rare: 40
+  legendary: 30

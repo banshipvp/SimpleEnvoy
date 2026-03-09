@@ -1,0 +1,21 @@
+name: SimpleEnvoy
+version: 1.0.0
+main: local.simpleenvoy.SimpleEnvoyPlugin
+api-version: "1.21"
+description: Standalone envoy system with AxEnvoy-style rewards
+softdepend: [SimpleKits, SimpleFactionsRaiding]
+
+commands:
+  envoy:
+    description: Manage and start envoy events
+    usage: /envoy <start|setspawn|clear|reload|status>
+    aliases: [simpleenvoy]
+  xpbottle:
+    description: Convert experience to XP bottles
+    usage: /xpbottle <amount>[k|m]
+    aliases: [xpb]
+
+permissions:
+  simpleenvoy.admin:
+    description: Manage SimpleEnvoy
+    default: op

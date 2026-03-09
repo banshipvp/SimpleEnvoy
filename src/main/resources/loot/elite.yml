@@ -129,21 +129,21 @@ entries:
   "10":
     chance: 14.0
     commands:
-      - 'gkitgem give %player% fighter'
+      - 'gkitgem give %player% thunder'
     display:
       material: NETHER_STAR
-      name: '&6&lWarlord GKit Gem'
+      name: '&6&lThunder GKit Gem'
       lore:
         - '&7Powered by SimpleKits'
     messages:
-      - '&7You found a &6&lWarlord GKit Gem&7!'
+      - '&7You found a &6&lThunder GKit Gem&7!'
 
   "11":
     chance: 20.0
     items:
       "0":
         material: NETHERITE_SWORD
-        name: '&6&lWarlord GKIT Piece &7- &fSword'
+        name: '&6&lWarlord Sword'
         enchants:
           SHARPNESS: 5
           UNBREAKING: 3
@@ -153,14 +153,14 @@ entries:
           - 'Deathbringer I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lWarlord GKIT Sword Piece&7!'
+      - '&7You rolled a &6&lWarlord Sword&7!'
 
   "12":
     chance: 18.0
     items:
       "0":
         material: NETHERITE_HELMET
-        name: '&6&lWarlord GKIT Piece &7- &fHelmet'
+        name: '&6&lWarlord Helmet'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -171,14 +171,14 @@ entries:
           - 'Tank II'
         amount: 1
     messages:
-      - '&7You rolled a &6&lWarlord GKIT Helmet Piece&7!'
+      - '&7You rolled a &6&lWarlord Helmet&7!'
 
   "13":
     chance: 16.0
     items:
       "0":
         material: NETHERITE_CHESTPLATE
-        name: '&6&lWarlord GKIT Piece &7- &fChestplate'
+        name: '&6&lWarlord Chestplate'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -187,14 +187,14 @@ entries:
           - 'Overload III'
         amount: 1
     messages:
-      - '&7You rolled a &6&lWarlord GKIT Chestplate Piece&7!'
+      - '&7You rolled a &6&lWarlord Chestplate&7!'
 
   "14":
     chance: 14.0
     items:
       "0":
         material: DIAMOND_LEGGINGS
-        name: '&6&lWarlord GKIT Piece &7- &fLeggings'
+        name: '&6&lWarlord Leggings'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -203,14 +203,14 @@ entries:
           - 'Armored II'
         amount: 1
     messages:
-      - '&7You rolled a &6&lWarlord GKIT Leggings Piece&7!'
+      - '&7You rolled a &6&lWarlord Leggings&7!'
 
   "15":
     chance: 14.0
     items:
       "0":
         material: DIAMOND_BOOTS
-        name: '&6&lWarlord GKIT Piece &7- &fBoots'
+        name: '&6&lWarlord Boots'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -220,7 +220,7 @@ entries:
           - 'Anti Gravity II'
         amount: 1
     messages:
-      - '&7You rolled a &6&lWarlord GKIT Boots Piece&7!'
+      - '&7You rolled a &6&lWarlord Boots&7!'
 
   "16":
     chance: 35.0
@@ -305,3 +305,27 @@ entries:
         - '&7Launches TNT at walls!'
     messages:
       - '&7You found a &c&lTNT Wand&7!'
+
+  "23":
+    chance: 4.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Elite Supply Crate!'
+
+  "24":
+    chance: 5.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Elite Supply Crate!'

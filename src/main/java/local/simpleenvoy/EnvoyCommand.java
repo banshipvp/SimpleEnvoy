@@ -2,6 +2,8 @@ package local.simpleenvoy;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -115,6 +117,23 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter, Listener {
             case "setplains" -> handleSetCenter(sender, "plains");
             case "setnether" -> handleSetCenter(sender, "nether");
 
+            case "cleanup" -> {
+                int removed = 0;
+                for (World w : Bukkit.getWorlds()) {
+                    for (ArmorStand as : w.getEntitiesByClass(ArmorStand.class)) {
+                        String name = as.getCustomName();
+                        if (name == null) continue;
+                        if (name.contains("\u25B6 Right-click to open")
+                                || name.contains("\u25B6 Left-click for instant loot")
+                                || name.contains("ENVOY")) {
+                            as.remove();
+                            removed++;
+                        }
+                    }
+                }
+                sender.sendMessage("§aRemoved §f" + removed + "§a orphaned envoy hologram entities.");
+            }
+
             case "reload" -> {
                 lootManager.reload();
                 sender.sendMessage("§aSimpleEnvoy loot tables reloaded.");
@@ -157,6 +176,7 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter, Listener {
         sender.sendMessage("§e/envoy setspawn|setdesert|setplains|setnether §7- Set center location");
         sender.sendMessage("§e/envoy info §7- Show active session info");
         sender.sendMessage("§e/envoy reload §7- Reload loot tables");
+        sender.sendMessage("§e/envoy cleanup §7- Remove orphaned envoy hologram entities");
         sender.sendMessage("§e/envoys §7- Show timer status");
         sender.sendMessage("§e/envoyedit <tier> §7- Edit loot for a tier");
         sender.sendMessage("§e/envoyadd <tier> <chance> §7- Add held item to tier loot");
@@ -327,7 +347,7 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter, Listener {
 
         if (cmd.equals("envoy")) {
             if (args.length == 1) return filter(List.of("start", "stopall", "setspawn", "setdesert",
-                    "setplains", "setnether", "info", "reload"), args[0]);
+                    "setplains", "setnether", "info", "reload", "cleanup"), args[0]);
             if (args.length == 2 && args[0].equalsIgnoreCase("start"))
                 return filter(List.of("default", "heroic"), args[1]);
             return List.of();

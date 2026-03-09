@@ -11,12 +11,12 @@ import org.bukkit.Material;
 public enum EnvoyTier {
 
     // colorCode, hologramName, fireworkColor, fireworkType, blockMaterial, defaultWeight
-    SIMPLE  ("§7", "§f§lSIMPLE SUPPLY CRATE",   Color.fromRGB(0xAAAAAA), FireworkEffect.Type.STAR,      Material.IRON_BLOCK,         55),
-    UNIQUE  ("§a", "§a§lUNIQUE SUPPLY CRATE",   Color.fromRGB(0x55FF55), FireworkEffect.Type.BALL,      Material.GOLD_BLOCK,         30),
-    ELITE   ("§b", "§b§lELITE SUPPLY CRATE",    Color.fromRGB(0x55FFFF), FireworkEffect.Type.BALL_LARGE,Material.DIAMOND_BLOCK,      12),
-    ULTIMATE("§5", "§5§lULTIMATE SUPPLY CRATE", Color.fromRGB(0xAA00AA), FireworkEffect.Type.BURST,     Material.EMERALD_BLOCK,       0),
-    LEGENDARY("§6","§6§lLEGENDARY SUPPLY CRATE",Color.fromRGB(0xFFAA00), FireworkEffect.Type.BURST,     Material.CRYING_OBSIDIAN,     3),
-    GODLY   ("§d", "§d§lGODLY SUPPLY CRATE",    Color.fromRGB(0xFF55FF), FireworkEffect.Type.CREEPER,   Material.BEACON,              0);
+    SIMPLE  ("§7", "§f§lSIMPLE SUPPLY CRATE",   Color.fromRGB(0xAAAAAA), FireworkEffect.Type.STAR,      Material.CHEST, 55),
+    UNIQUE  ("§a", "§a§lUNIQUE SUPPLY CRATE",   Color.fromRGB(0x55FF55), FireworkEffect.Type.BALL,      Material.CHEST, 30),
+    ELITE   ("§b", "§b§lELITE SUPPLY CRATE",    Color.fromRGB(0x55FFFF), FireworkEffect.Type.BALL_LARGE,Material.CHEST, 12),
+    ULTIMATE("§5", "§5§lULTIMATE SUPPLY CRATE", Color.fromRGB(0xAA00AA), FireworkEffect.Type.BURST,     Material.CHEST,  0),
+    LEGENDARY("§6","§6§lLEGENDARY SUPPLY CRATE",Color.fromRGB(0xFFAA00), FireworkEffect.Type.BURST,     Material.CHEST,  3),
+    GODLY   ("§d", "§d§lGODLY SUPPLY CRATE",    Color.fromRGB(0xFF55FF), FireworkEffect.Type.CREEPER,   Material.CHEST,  0);
 
     private final String colorCode;
     private final String displayName;

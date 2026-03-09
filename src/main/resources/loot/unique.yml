@@ -154,7 +154,7 @@ entries:
     items:
       "0":
         material: DIAMOND_SWORD
-        name: '&6&lMilitant GKIT Piece &7- &fSword'
+        name: '&6&lMilitant Sword'
         enchants:
           SHARPNESS: 5
           UNBREAKING: 3
@@ -163,14 +163,14 @@ entries:
           - 'Execute II'
         amount: 1
     messages:
-      - '&7You rolled a &6&lMilitant GKIT Sword Piece&7!'
+      - '&7You rolled a &6&lMilitant Sword&7!'
 
   "13":
     chance: 16.0
     items:
       "0":
         material: DIAMOND_HELMET
-        name: '&6&lMilitant GKIT Piece &7- &fHelmet'
+        name: '&6&lMilitant Helmet'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -180,14 +180,14 @@ entries:
           - 'Tank I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lMilitant GKIT Helmet Piece&7!'
+      - '&7You rolled a &6&lMilitant Helmet&7!'
 
   "14":
     chance: 14.0
     items:
       "0":
         material: DIAMOND_CHESTPLATE
-        name: '&6&lTactician GKIT Piece &7- &fChestplate'
+        name: '&6&lTactician Chestplate'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -196,14 +196,14 @@ entries:
           - 'Overload II'
         amount: 1
     messages:
-      - '&7You rolled a &6&lTactician GKIT Chestplate Piece&7!'
+      - '&7You rolled a &6&lTactician Chestplate&7!'
 
   "15":
     chance: 14.0
     items:
       "0":
         material: DIAMOND_LEGGINGS
-        name: '&6&lTactician GKIT Piece &7- &fLeggings'
+        name: '&6&lTactician Leggings'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -212,14 +212,14 @@ entries:
           - 'Armored I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lTactician GKIT Leggings Piece&7!'
+      - '&7You rolled a &6&lTactician Leggings&7!'
 
   "16":
     chance: 14.0
     items:
       "0":
         material: DIAMOND_BOOTS
-        name: '&6&lTactician GKIT Piece &7- &fBoots'
+        name: '&6&lTactician Boots'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -229,14 +229,14 @@ entries:
           - 'Anti Gravity I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lTactician GKIT Boots Piece&7!'
+      - '&7You rolled a &6&lTactician Boots&7!'
 
   "17":
     chance: 14.0
     items:
       "0":
         material: BOW
-        name: '&6&lTactician GKIT Piece &7- &fBow'
+        name: '&6&lTactician Bow'
         enchants:
           POWER: 5
           UNBREAKING: 3
@@ -246,7 +246,7 @@ entries:
           - 'Snipe I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lTactician GKIT Bow Piece&7!'
+      - '&7You rolled a &6&lTactician Bow&7!'
 
   "18":
     chance: 40.0
@@ -368,3 +368,27 @@ entries:
         - '&7Launches TNT at walls!'
     messages:
       - '&7You found a &c&lTNT Wand&7!'
+
+  "28":
+    chance: 5.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Unique Supply Crate!'
+
+  "29":
+    chance: 3.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Unique Supply Crate!'

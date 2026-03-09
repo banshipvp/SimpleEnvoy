@@ -156,7 +156,7 @@ entries:
     items:
       "0":
         material: NETHERITE_SWORD
-        name: '&d&lGodly GKIT Piece &7- &fSword'
+        name: '&d&lGodly Sword'
         enchants:
           SHARPNESS: 5
           UNBREAKING: 3
@@ -169,14 +169,14 @@ entries:
           - 'Overload IV'
         amount: 1
     messages:
-      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Sword Piece&7!'
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly Sword&7!'
 
   "12":
     chance: 20.0
     items:
       "0":
         material: NETHERITE_HELMET
-        name: '&d&lGodly GKIT Piece &7- &fHelmet'
+        name: '&d&lGodly Helmet'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -190,14 +190,14 @@ entries:
           - 'Lifesteal I'
         amount: 1
     messages:
-      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Helmet Piece&7!'
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly Helmet&7!'
 
   "13":
     chance: 18.0
     items:
       "0":
         material: NETHERITE_CHESTPLATE
-        name: '&d&lGodly GKIT Piece &7- &fChestplate'
+        name: '&d&lGodly Chestplate'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -209,14 +209,14 @@ entries:
           - 'Lifesteal I'
         amount: 1
     messages:
-      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Chestplate Piece&7!'
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly Chestplate&7!'
 
   "14":
     chance: 16.0
     items:
       "0":
         material: NETHERITE_LEGGINGS
-        name: '&d&lGodly GKIT Piece &7- &fLeggings'
+        name: '&d&lGodly Leggings'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -227,14 +227,14 @@ entries:
           - 'Lifesteal I'
         amount: 1
     messages:
-      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Leggings Piece&7!'
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly Leggings&7!'
 
   "15":
     chance: 16.0
     items:
       "0":
         material: NETHERITE_BOOTS
-        name: '&d&lGodly GKIT Piece &7- &fBoots'
+        name: '&d&lGodly Boots'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -248,14 +248,14 @@ entries:
           - 'Lifesteal I'
         amount: 1
     messages:
-      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Boots Piece&7!'
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly Boots&7!'
 
   "16":
     chance: 18.0
     items:
       "0":
         material: NETHERITE_AXE
-        name: '&d&lGodly GKIT Piece &7- &fAxe'
+        name: '&d&lGodly Axe'
         enchants:
           SHARPNESS: 5
           UNBREAKING: 3
@@ -267,7 +267,7 @@ entries:
           - 'Overload III'
         amount: 1
     messages:
-      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Axe Piece&7!'
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly Axe&7!'
 
   "17":
     chance: 22.0
@@ -412,3 +412,27 @@ entries:
         - '&d&l!!!ULTRA RARE!!! &7Opens 5 Godly Crates!'
     messages:
       - '&d&l!!!ULTRA RARE!!! &7You found &d&l5x Godly Crate Keys&7!'
+
+  "29":
+    chance: 2.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Godly Supply Crate!'
+
+  "30":
+    chance: 3.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Godly Supply Crate!'

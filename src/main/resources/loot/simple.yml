@@ -81,7 +81,7 @@ entries:
     items:
       "0":
         material: IRON_SWORD
-        name: '&6&lScout GKIT Piece &7- &fSword'
+        name: '&6&lScout Sword'
         enchants:
           SHARPNESS: 5
           UNBREAKING: 3
@@ -90,14 +90,14 @@ entries:
           - 'Execute I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lScout GKIT Sword Piece&7!'
+      - '&7You rolled a &6&lScout Sword&7!'
 
   "7":
     chance: 16.0
     items:
       "0":
         material: IRON_HELMET
-        name: '&6&lScout GKIT Piece &7- &fHelmet'
+        name: '&6&lScout Helmet'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -106,14 +106,14 @@ entries:
           - 'Tank I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lScout GKIT Helmet Piece&7!'
+      - '&7You rolled a &6&lScout Helmet&7!'
 
   "8":
     chance: 14.0
     items:
       "0":
         material: IRON_CHESTPLATE
-        name: '&6&lScout GKIT Piece &7- &fChestplate'
+        name: '&6&lScout Chestplate'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -122,14 +122,14 @@ entries:
           - 'Overload I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lScout GKIT Chestplate Piece&7!'
+      - '&7You rolled a &6&lScout Chestplate&7!'
 
   "9":
     chance: 14.0
     items:
       "0":
         material: IRON_BOOTS
-        name: '&6&lScout GKIT Piece &7- &fBoots'
+        name: '&6&lScout Boots'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -139,7 +139,7 @@ entries:
           - 'Anti Gravity I'
         amount: 1
     messages:
-      - '&7You rolled a &6&lScout GKIT Boots Piece&7!'
+      - '&7You rolled a &6&lScout Boots&7!'
 
   "10":
     chance: 12.0

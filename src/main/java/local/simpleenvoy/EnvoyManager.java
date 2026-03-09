@@ -40,7 +40,9 @@ public class EnvoyManager {
 
     private static final int  MAX_PLAYERS          = 10;
     private static final int  SPAWN_RADIUS         = 100;
-    private static final int  MIN_DISTANCE_BETWEEN = 5;   // min blocks between chests
+    private static final int  MIN_DISTANCE_BETWEEN = 15;  // min blocks between chests
+    private static final int  MIN_SPAWN_Y          = 60;  // minimum Y for chest placement
+    private static final int  MAX_SPAWN_Y          = 130; // maximum Y for chest placement
 
     /**
      * Tier weights per location. Defines which tier can spawn at each location
@@ -336,9 +338,13 @@ public class EnvoyManager {
             // Must be solid and not something we'd destroy
             if (surface.isEmpty() || surface.isLiquid()) continue;
 
-            // Chest goes one above
+            // Chest goes one above the surface
             Block chestBlock = world.getBlockAt(x, surface.getY() + 1, z);
             if (!chestBlock.isEmpty()) continue; // something already there
+
+            // Enforce Y height bounds
+            int chestY = chestBlock.getY();
+            if (chestY < MIN_SPAWN_Y || chestY > MAX_SPAWN_Y) continue;
 
             // Check min distance from other chests
             String blockKey = blockKey(chestBlock);
@@ -433,6 +439,7 @@ public class EnvoyManager {
     }
 
     private void saveCenters() {
+        centersFile.getParentFile().mkdirs(); // ensure plugins/SimpleEnvoy/ directory exists
         YamlConfiguration yaml = new YamlConfiguration();
         for (Map.Entry<String, Location> e : centers.entrySet()) {
             Location loc = e.getValue();

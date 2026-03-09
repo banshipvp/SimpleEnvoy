@@ -96,56 +96,50 @@ public class ChestListener implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         if (!(event.getInventory().getHolder() instanceof ChestInventoryHolder holder)) return;
 
+        // Always cancel — we never allow Bukkit to physically transfer display items.
+        // Real loot (items + commands) is delivered manually below.
+        event.setCancelled(true);
+
         EnvoyChest chest = holder.getEnvoyChest();
-        if (chest == null || chest.isBroken()) {
-            event.setCancelled(true);
-            return;
-        }
+        if (chest == null || chest.isBroken()) return;
 
-        if (!(event.getWhoClicked() instanceof Player player)) {
-            event.setCancelled(true);
-            return;
-        }
+        if (!(event.getWhoClicked() instanceof Player player)) return;
 
-        // Prevent placing items into the envoy inventory
-        if (event.getClickedInventory() == chest.inventory()) {
-            // Taking an item from the chest
-            ItemStack clickedItem = event.getCurrentItem();
-            if (clickedItem == null || clickedItem.getType().isAir()) {
-                event.setCancelled(true);
-                return;
-            }
+        // Only act when the player clicks directly inside the envoy chest inventory,
+        // not when they're clicking around in their own bottom inventory.
+        if (event.getClickedInventory() != chest.inventory()) return;
 
-            // Map click slot back to loot entry
-            int slot = event.getSlot();
-            LootEntry entry = chest.getEntryForSlot(slot);
-            if (entry != null) {
-                // Execute commands (if any)
-                if (entry.hasCommands()) {
-                    Bukkit.getScheduler().runTask(plugin, () -> executeCommands(player, entry.commands()));
-                }
-                // Send messages
-                Bukkit.getScheduler().runTask(plugin, () -> {
-                    for (String msg : entry.messages()) {
-                        player.sendMessage(msg);
-                    }
-                });
-            }
+        ItemStack clickedItem = event.getCurrentItem();
+        if (clickedItem == null || clickedItem.getType().isAir()) return;
 
-            // The item in the slot will be naturally moved to the player's cursor/inventory
-            // by Bukkit — we just need to clear it from the chest tracking.
-            Bukkit.getScheduler().runTask(plugin, () -> {
-                chest.inventory().setItem(slot, null);
-                checkChestEmpty(chest, player);
-            });
+        int slot = event.getSlot();
+        LootEntry entry = chest.getEntryForSlot(slot);
+        if (entry == null) return; // slot already claimed
 
-        } else {
-            // Player is clicking in their own inventory while chest is open
-            // Prevent shift-clicking items INTO the envoy chest
-            if (event.isShiftClick()) {
-                // do nothing, Bukkit handles shift-click to player naturally
+        // ── Deliver loot ─────────────────────────────────────────────────────
+
+        // Clear the visual slot immediately so it can't be double-claimed
+        chest.inventory().setItem(slot, null);
+
+        // 1. Give real ItemStacks (entries that have actual items, not command-only)
+        if (entry.hasItems()) {
+            for (ItemStack item : entry.items()) {
+                give(player, item.clone());
             }
         }
+
+        // 2. Execute console commands on the next tick (command dispatch is sync)
+        if (entry.hasCommands()) {
+            Bukkit.getScheduler().runTask(plugin, () -> executeCommands(player, entry.commands()));
+        }
+
+        // 3. Send reward messages
+        for (String msg : entry.messages()) {
+            player.sendMessage(msg);
+        }
+
+        // 4. Check if chest is now fully looted
+        Bukkit.getScheduler().runTask(plugin, () -> checkChestEmpty(chest, player));
     }
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)

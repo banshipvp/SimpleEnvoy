@@ -131,45 +131,45 @@ entries:
   "10":
     chance: 16.0
     commands:
-      - 'rankvoucher give %player% sovereign 1'
+      - 'rankvoucher give %player% royalty 1'
     display:
       material: BOOK
-      name: '&6&lSovereign Rank Voucher'
+      name: '&6&lRoyalty Rank Voucher'
       lore:
         - '&7Redeem for Sovereign rank!'
     messages:
-      - '&7You received a &6&lSovereign Rank Voucher&7!'
+      - '&7You received a &6&lRoyalty Rank Voucher&7!'
 
   "11":
     chance: 16.0
     commands:
-      - 'gkitgem give %player% fighter'
+      - 'gkitgem give %player% tank'
     display:
       material: NETHER_STAR
-      name: '&6&lWarlord GKit Gem'
+      name: '&6&lTank GKit Gem'
       lore:
         - '&7Powered by SimpleKits'
     messages:
-      - '&7You found a &6&lWarlord GKit Gem&7!'
+      - '&7You found a &6&lTank GKit Gem&7!'
 
   "12":
     chance: 10.0
     commands:
-      - 'gkitgem give %player% sovereign'
+      - 'gkitgem give %player% royalty'
     display:
       material: NETHER_STAR
-      name: '&6&lSovereign GKit Gem'
+      name: '&6&lRoyalty GKit Gem'
       lore:
         - '&7Powered by SimpleKits'
     messages:
-      - '&7You found a &6&lSovereign GKit Gem&7!'
+      - '&7You found a &6&lRoyalty GKit Gem&7!'
 
   "13":
     chance: 22.0
     items:
       "0":
         material: NETHERITE_SWORD
-        name: '&5&lUltimate GKIT Piece &7- &fSword'
+        name: '&5&lUltimate Sword'
         enchants:
           SHARPNESS: 5
           UNBREAKING: 3
@@ -180,14 +180,14 @@ entries:
           - 'Deathbringer II'
         amount: 1
     messages:
-      - '&7You rolled a &5&lUltimate GKIT Sword Piece&7!'
+      - '&7You rolled a &5&lUltimate Sword&7!'
 
   "14":
     chance: 20.0
     items:
       "0":
         material: NETHERITE_HELMET
-        name: '&5&lUltimate GKIT Piece &7- &fHelmet'
+        name: '&5&lUltimate Helmet'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -199,14 +199,14 @@ entries:
           - 'Overload II'
         amount: 1
     messages:
-      - '&7You rolled a &5&lUltimate GKIT Helmet Piece&7!'
+      - '&7You rolled a &5&lUltimate Helmet&7!'
 
   "15":
     chance: 18.0
     items:
       "0":
         material: NETHERITE_CHESTPLATE
-        name: '&5&lUltimate GKIT Piece &7- &fChestplate'
+        name: '&5&lUltimate Chestplate'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -216,14 +216,14 @@ entries:
           - 'Tank II'
         amount: 1
     messages:
-      - '&7You rolled a &5&lUltimate GKIT Chestplate Piece&7!'
+      - '&7You rolled a &5&lUltimate Chestplate&7!'
 
   "16":
     chance: 16.0
     items:
       "0":
         material: NETHERITE_LEGGINGS
-        name: '&5&lUltimate GKIT Piece &7- &fLeggings'
+        name: '&5&lUltimate Leggings'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -232,14 +232,14 @@ entries:
           - 'Armored II'
         amount: 1
     messages:
-      - '&7You rolled a &5&lUltimate GKIT Leggings Piece&7!'
+      - '&7You rolled a &5&lUltimate Leggings&7!'
 
   "17":
     chance: 16.0
     items:
       "0":
         material: NETHERITE_BOOTS
-        name: '&5&lUltimate GKIT Piece &7- &fBoots'
+        name: '&5&lUltimate Boots'
         enchants:
           PROTECTION: 5
           UNBREAKING: 3
@@ -250,7 +250,7 @@ entries:
           - 'Anti Gravity II'
         amount: 1
     messages:
-      - '&7You rolled a &5&lUltimate GKIT Boots Piece&7!'
+      - '&7You rolled a &5&lUltimate Boots&7!'
 
   "18":
     chance: 30.0
@@ -371,3 +371,27 @@ entries:
         - '&7Launches TNT at walls!'
     messages:
       - '&7You found a &c&lTNT Wand&7!'
+
+  "28":
+    chance: 3.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Ultimate Supply Crate!'
+
+  "29":
+    chance: 5.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Ultimate Supply Crate!'

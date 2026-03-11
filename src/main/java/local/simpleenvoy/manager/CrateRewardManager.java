@@ -39,6 +39,10 @@ public class CrateRewardManager {
     }
 
     public ItemStack generateSingleReward(CrateTier tier) {
+        // First try to roll a FactionEnchants special item (orbs, scrolls, white scrolls, etc.)
+        ItemStack feItem = rollFactionEnchantItem(tier);
+        if (feItem != null) return feItem;
+
         int roll = RANDOM.nextInt(100);
 
         if (tier == CrateTier.SIMPLE) {
@@ -384,5 +388,76 @@ public class CrateRewardManager {
             return String.format("%.1f", xp / 1000.0) + "k";
         }
         return String.valueOf(xp);
+    }
+
+    // ── FactionEnchants integration ────────────────────────────────────────────
+
+    /**
+     * Rolls for a FactionEnchants special item for the given envoy tier.
+     * Returns null if FactionEnchants is not loaded or the roll misses.
+     *
+     * Tier probabilities (independent of regular loot roll):
+     *   SIMPLE   – 5 % randomization scroll (Ultimate)
+     *   UNIQUE   – 4 % Legendary scroll, 3 % white scroll, 3 % name tag, 3 % soul gem generator
+     *   GODLY    – 5 % Godly scroll, 6 % white scroll, 3 % name tag, 3 % soul gem generator,
+     *              6 % weapon/armor orb [10]
+     *   LEGENDARY– 6 % Godly scroll, 8 % white scroll, 5 % name tag, 4 % soul gem generator,
+     *              10 % weapon/armor orb [10–12]
+     */
+    private ItemStack rollFactionEnchantItem(CrateTier tier) {
+        com.factionenchants.FactionEnchantsPlugin fe = getFactionEnchants();
+        if (fe == null) return null;
+
+        int roll = RANDOM.nextInt(100);
+
+        return switch (tier) {
+            case SIMPLE -> {
+                if (roll < 5)  yield fe_randScroll(tier, fe);  // 5%
+                yield null;
+            }
+            case UNIQUE -> {
+                if (roll < 4)  yield fe_randScroll(tier, fe);  // 4%
+                if (roll < 7)  yield com.factionenchants.items.WhiteScrollItem.create(fe);   // 3%
+                if (roll < 10) yield com.factionenchants.items.NameTagItem.create(fe);       // 3%
+                if (roll < 13) yield com.factionenchants.items.SoulGemItem.createGenerator(fe); // 3%
+                yield null;
+            }
+            case GODLY -> {
+                if (roll < 5)  yield fe_randScroll(tier, fe);  // 5%
+                if (roll < 11) yield com.factionenchants.items.WhiteScrollItem.create(fe);   // 6%
+                if (roll < 14) yield com.factionenchants.items.NameTagItem.create(fe);       // 3%
+                if (roll < 17) yield com.factionenchants.items.SoulGemItem.createGenerator(fe); // 3%
+                if (roll < 23) yield RANDOM.nextBoolean()                                    // 6%
+                        ? com.factionenchants.items.EnchantmentOrbItem.createWeaponOrb(fe, 10)
+                        : com.factionenchants.items.EnchantmentOrbItem.createArmorOrb(fe, 10);
+                yield null;
+            }
+            case LEGENDARY -> {
+                if (roll < 6)  yield fe_randScroll(tier, fe);  // 6%
+                if (roll < 14) yield com.factionenchants.items.WhiteScrollItem.create(fe);   // 8%
+                if (roll < 19) yield com.factionenchants.items.NameTagItem.create(fe);       // 5%
+                if (roll < 23) yield com.factionenchants.items.SoulGemItem.createGenerator(fe); // 4%
+                if (roll < 33) {                                                             // 10%
+                    int slots = 10 + RANDOM.nextInt(3); // 10, 11, or 12
+                    yield RANDOM.nextBoolean()
+                            ? com.factionenchants.items.EnchantmentOrbItem.createWeaponOrb(fe, slots)
+                            : com.factionenchants.items.EnchantmentOrbItem.createArmorOrb(fe, slots);
+                }
+                yield null;
+            }
+        };
+    }
+
+    private ItemStack fe_randScroll(CrateTier tier, com.factionenchants.FactionEnchantsPlugin fe) {
+        return switch (tier) {
+            case SIMPLE  -> com.factionenchants.items.RandomizationScrollItem.createUltimate(fe);
+            case UNIQUE  -> com.factionenchants.items.RandomizationScrollItem.createLegendary(fe);
+            case GODLY, LEGENDARY -> com.factionenchants.items.RandomizationScrollItem.createGodly(fe);
+        };
+    }
+
+    private com.factionenchants.FactionEnchantsPlugin getFactionEnchants() {
+        org.bukkit.plugin.Plugin fe = plugin.getServer().getPluginManager().getPlugin("FactionEnchants");
+        return fe instanceof com.factionenchants.FactionEnchantsPlugin fep ? fep : null;
     }
 }

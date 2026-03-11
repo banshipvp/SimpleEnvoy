@@ -25,21 +25,33 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        String sub = args.length > 0 ? args[0].toLowerCase(Locale.ROOT) : "";
+
+        // /envoy status is public — any player can check the countdown.
+        if (sub.equals("status") || sub.isEmpty()) {
+            boolean adminView = sender.hasPermission("simpleenvoy.admin") || sender.isOp();
+
+            long secs = envoyManager.getSecondsUntilNextSpawn();
+            String countdown = secs < 0 ? "§7Unknown (scheduler not active)" : "§a" + formatCountdown(secs);
+
+            sender.sendMessage("§6§l⚔ SimpleEnvoy ⚔");
+            sender.sendMessage("§7Active crates: §f" + envoyManager.getActiveCrateCount());
+            sender.sendMessage("§7Next envoy: " + countdown);
+
+            if (adminView && !sub.isEmpty()) {
+                Location center = envoyManager.getSpawnCenter();
+                sender.sendMessage("§7Center: §f" + (center == null ? "not set" : format(center)));
+                sender.sendMessage("§7Schedule: §f" + envoyManager.getEveryRaw());
+                sender.sendMessage("§7Amount (sample): §f" + envoyManager.getConfiguredAmountSample());
+            }
+            return true;
+        }
+
         if (!sender.hasPermission("simpleenvoy.admin") && !sender.isOp()) {
             sender.sendMessage("§cYou do not have permission.");
             return true;
         }
 
-        if (args.length == 0) {
-            sender.sendMessage("§e/envoy start §7- spawn crates now");
-            sender.sendMessage("§e/envoy setspawn §7- set random center to your location");
-            sender.sendMessage("§e/envoy clear §7- remove active crates");
-            sender.sendMessage("§e/envoy reload §7- reload envoys/default.yml");
-            sender.sendMessage("§e/envoy status §7- show current settings summary");
-            return true;
-        }
-
-        String sub = args[0].toLowerCase(Locale.ROOT);
         switch (sub) {
             case "start" -> {
                 int spawned = envoyManager.spawnEvent();
@@ -73,17 +85,13 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage("§aReloaded §fenvoys/default.yml§a.");
                 return true;
             }
-            case "status" -> {
-                Location center = envoyManager.getSpawnCenter();
-                sender.sendMessage("§6SimpleEnvoy Status");
-                sender.sendMessage("§7Active crates: §f" + envoyManager.getActiveCrateCount());
-                sender.sendMessage("§7Configured amount (sample): §f" + envoyManager.getConfiguredAmountSample());
-                sender.sendMessage("§7Schedule (every): §f" + envoyManager.getEveryRaw());
-                sender.sendMessage("§7Center: §f" + (center == null ? "not set" : format(center)));
-                return true;
-            }
             default -> {
-                sender.sendMessage("§cUnknown subcommand.");
+                sender.sendMessage("§e/envoy §7- show next-envoy countdown");
+                sender.sendMessage("§e/envoy start §7- spawn crates now");
+                sender.sendMessage("§e/envoy setspawn §7- set random center to your location");
+                sender.sendMessage("§e/envoy clear §7- remove active crates");
+                sender.sendMessage("§e/envoy reload §7- reload envoys/default.yml");
+                sender.sendMessage("§e/envoy status §7- show detailed settings");
                 return true;
             }
         }
@@ -103,6 +111,19 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter {
             return out;
         }
         return List.of();
+    }
+
+    private String formatCountdown(long totalSeconds) {
+        long hours = totalSeconds / 3600;
+        long mins = (totalSeconds % 3600) / 60;
+        long secs = totalSeconds % 60;
+        if (hours > 0) {
+            return String.format("%dh %02dm %02ds", hours, mins, secs);
+        }
+        if (mins > 0) {
+            return String.format("%dm %02ds", mins, secs);
+        }
+        return String.format("%ds", secs);
     }
 
     private String format(Location location) {

@@ -47,6 +47,8 @@ public class EnvoyManager implements Listener {
 
     private BukkitTask autoTask;
     private BukkitTask timeoutTask;
+    private long nextSpawnMs = -1L;
+    private long spawnPeriodMs = -1L;
 
     public EnvoyManager(SimpleEnvoyPlugin plugin, CrateRewardManager rewardManager) {
         this.plugin = plugin;
@@ -297,7 +299,8 @@ public class EnvoyManager implements Listener {
         int maxDistanceZ = Math.max(1, randomSection.getInt("max-distance.z", 100));
         int minDistance = Math.max(0, randomSection.getInt("min-distance", 0));
         int minHeight = Math.max(0, randomSection.getInt("min-height", world.getMinHeight()));
-        int maxHeight = Math.min(world.getMaxHeight() - 1, randomSection.getInt("max-height", world.getMaxHeight() - 1));
+        // Hard cap at 130 – prevents chests spawning on top of tall structures like spawn builds.
+        int maxHeight = Math.min(130, Math.min(world.getMaxHeight() - 1, randomSection.getInt("max-height", 130)));
 
         int x = centerX + random.nextInt((maxDistanceX * 2) + 1) - maxDistanceX;
         int z = centerZ + random.nextInt((maxDistanceZ * 2) + 1) - maxDistanceZ;
@@ -546,6 +549,8 @@ public class EnvoyManager implements Listener {
             autoTask.cancel();
             autoTask = null;
         }
+        nextSpawnMs = -1L;
+        spawnPeriodMs = -1L;
 
         String every = envoyYaml == null ? "" : envoyYaml.getString("every", "").trim();
         long periodTicks = parseDurationToTicks(every);
@@ -553,12 +558,23 @@ public class EnvoyManager implements Listener {
             return;
         }
 
+        spawnPeriodMs = periodTicks * 50L;
+        nextSpawnMs = System.currentTimeMillis() + spawnPeriodMs;
+
         autoTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
             int spawned = spawnEvent();
             if (spawned > 0) {
                 plugin.getLogger().info("Auto-spawned " + spawned + " envoy crates.");
             }
+            nextSpawnMs = System.currentTimeMillis() + spawnPeriodMs;
         }, periodTicks, periodTicks);
+    }
+
+    /** Returns seconds until the next automatic envoy spawn, or -1 if the scheduler is not running. */
+    public long getSecondsUntilNextSpawn() {
+        if (nextSpawnMs < 0L || autoTask == null) return -1L;
+        long remaining = nextSpawnMs - System.currentTimeMillis();
+        return Math.max(0L, remaining / 1000L);
     }
 
     private long parseDurationToTicks(String text) {

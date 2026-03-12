@@ -1,0 +1,394 @@
+# UNIQUE Tier Loot Table — ported from AxEnvoy rare.yml
+# §a color (green) — second rarity tier
+reward-amount: 3
+
+entries:
+  "0":
+    chance: 30.0
+    commands:
+      - 'banknote give %player% 5000'
+    display:
+      material: PAPER
+      name: '&a$5,000 Bank Note'
+      lore:
+        - '&7Claim: &a$5,000!'
+    messages:
+      - '&7You found a &a&l$5,000 Bank Balance Note&7 in the Unique Supply Crate!'
+
+  "1":
+    chance: 18.0
+    commands:
+      - 'banknote give %player% 10000'
+    display:
+      material: PAPER
+      name: '&a$10,000 Bank Note'
+      lore:
+        - '&7Claim: &a$10,000!'
+    messages:
+      - '&7You found a &a&l$10,000 Bank Balance Note&7!'
+
+  "2":
+    chance: 8.0
+    commands:
+      - 'banknote give %player% 25000'
+    display:
+      material: PAPER
+      name: '&a$25,000 Bank Note'
+      lore:
+        - '&6&lLUCKY! &7Claim: &a$25,000!'
+    messages:
+      - '&6&lLUCKY! &7You found a &a&l$25,000 Bank Balance Note&7!'
+
+  "3":
+    chance: 28.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&6&l??? Mystery Spawner ???'
+      lore:
+        - '&7Place to reveal a random mob!'
+        - '&8Powered by SimpleKits'
+    messages:
+      - '&7You found a &e&lMystery Mob Spawner&7 in the Unique Crate!'
+
+  "4":
+    chance: 18.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&6&l2x Mystery Spawners'
+      lore:
+        - '&7Place to reveal 2 random mobs!'
+    messages:
+      - '&7You found &e&l2x Mystery Mob Spawners&7!'
+
+  "5":
+    chance: 20.0
+    commands:
+      - 'simplecrates:crate give %player% simple 1'
+    display:
+      material: CHEST
+      name: '&f&lSimple Crate Key'
+      lore:
+        - '&7Opens a Simple Crate!'
+    messages:
+      - '&7You found a &f&lSimple Crate Key&7!'
+
+  "6":
+    chance: 16.0
+    commands:
+      - 'simplecrates:crate give %player% unique 1'
+    display:
+      material: CHEST
+      name: '&a&lUnique Crate Key'
+      lore:
+        - '&7Opens a Unique Crate!'
+    messages:
+      - '&7You found a &a&lUnique Crate Key&7!'
+
+  "7":
+    chance: 12.0
+    commands:
+      - 'simplecrates:crate give %player% elite 1'
+    display:
+      material: CHEST
+      name: '&b&lElite Crate Key'
+      lore:
+        - '&7Opens an Elite Crate!'
+    messages:
+      - '&7You found an &b&lElite Crate Key&7!'
+
+  "8":
+    chance: 20.0
+    commands:
+      - 'rankvoucher give %player% militant 1'
+    display:
+      material: BOOK
+      name: '&6&lMilitant Rank Voucher'
+      lore:
+        - '&7Redeem for Militant rank!'
+    messages:
+      - '&7You received a &6&lMilitant Rank Voucher&7!'
+
+  "9":
+    chance: 15.0
+    commands:
+      - 'rankvoucher give %player% tactician 1'
+    display:
+      material: BOOK
+      name: '&6&lTactician Rank Voucher'
+      lore:
+        - '&7Redeem for Tactician rank!'
+    messages:
+      - '&7You received a &6&lTactician Rank Voucher&7!'
+
+  "10":
+    chance: 10.0
+    commands:
+      - 'gkitgem give %player% vampire'
+    display:
+      material: NETHER_STAR
+      name: '&6&lMilitant GKit Gem'
+      lore:
+        - '&7Powered by SimpleKits'
+    messages:
+      - '&7You found a &6&lMilitant GKit Gem&7!'
+
+  "11":
+    chance: 8.0
+    commands:
+      - 'gkitgem give %player% archer'
+    display:
+      material: NETHER_STAR
+      name: '&6&lTactician GKit Gem'
+      lore:
+        - '&7Powered by SimpleKits'
+    messages:
+      - '&7You found a &6&lTactician GKit Gem&7!'
+
+  "12":
+    chance: 18.0
+    items:
+      "0":
+        material: DIAMOND_SWORD
+        name: '&6&lMilitant GKIT Piece &7- &fSword'
+        enchants:
+          SHARPNESS: 5
+          UNBREAKING: 3
+        lore:
+          - 'Vampiric II'
+          - 'Execute II'
+        amount: 1
+    messages:
+      - '&7You rolled a &6&lMilitant GKIT Sword Piece&7!'
+
+  "13":
+    chance: 16.0
+    items:
+      "0":
+        material: DIAMOND_HELMET
+        name: '&6&lMilitant GKIT Piece &7- &fHelmet'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          RESPIRATION: 2
+        lore:
+          - 'Armored II'
+          - 'Tank I'
+        amount: 1
+    messages:
+      - '&7You rolled a &6&lMilitant GKIT Helmet Piece&7!'
+
+  "14":
+    chance: 14.0
+    items:
+      "0":
+        material: DIAMOND_CHESTPLATE
+        name: '&6&lTactician GKIT Piece &7- &fChestplate'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+        lore:
+          - 'Armored II'
+          - 'Overload II'
+        amount: 1
+    messages:
+      - '&7You rolled a &6&lTactician GKIT Chestplate Piece&7!'
+
+  "15":
+    chance: 14.0
+    items:
+      "0":
+        material: DIAMOND_LEGGINGS
+        name: '&6&lTactician GKIT Piece &7- &fLeggings'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+        lore:
+          - 'Tank I'
+          - 'Armored I'
+        amount: 1
+    messages:
+      - '&7You rolled a &6&lTactician GKIT Leggings Piece&7!'
+
+  "16":
+    chance: 14.0
+    items:
+      "0":
+        material: DIAMOND_BOOTS
+        name: '&6&lTactician GKIT Piece &7- &fBoots'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          FEATHER_FALLING: 4
+        lore:
+          - 'Springs II'
+          - 'Anti Gravity I'
+        amount: 1
+    messages:
+      - '&7You rolled a &6&lTactician GKIT Boots Piece&7!'
+
+  "17":
+    chance: 14.0
+    items:
+      "0":
+        material: BOW
+        name: '&6&lTactician GKIT Piece &7- &fBow'
+        enchants:
+          POWER: 5
+          UNBREAKING: 3
+          INFINITY: 1
+        lore:
+          - 'Snare II'
+          - 'Snipe I'
+        amount: 1
+    messages:
+      - '&7You rolled a &6&lTactician GKIT Bow Piece&7!'
+
+  "18":
+    chance: 40.0
+    commands:
+      - 'give %player% enchanted_golden_apple 3'
+    display:
+      material: ENCHANTED_GOLDEN_APPLE
+      name: '&6&l3x Enchanted Golden Apples'
+      lore:
+        - '&7Click to claim!'
+    messages:
+      - '&7You found &6&l3x Enchanted Golden Apples&7!'
+
+  "19":
+    chance: 30.0
+    commands:
+      - 'simplecrates:crate give %player% unique 1'
+    display:
+      material: CHEST
+      name: '&a&lUnique Crate Key'
+      lore:
+        - '&7Opens a Unique Crate!'
+    messages:
+      - '&7You found a &a&lUnique Crate Key&7!'
+
+  "20":
+    chance: 25.0
+    commands:
+      - 'simplecrates:crate give %player% elite 1'
+    display:
+      material: CHEST
+      name: '&b&lElite Crate Key'
+      lore:
+        - '&7Opens an Elite Crate!'
+    messages:
+      - '&7You found an &b&lElite Crate Key&7!'
+
+  "21":
+    chance: 22.0
+    items:
+      "0":
+        material: EXPERIENCE_BOTTLE
+        name: '&b&lXP Bottle &7- 10,000 XP'
+        lore:
+          - '&7Right-click to consume'
+        amount: 1
+    messages:
+      - '&7You found a &b&l10,000 XP Bottle&7!'
+
+  "22":
+    chance: 12.0
+    commands:
+      - 'gen give %player% fat_water_bucket 1'
+    display:
+      material: BUCKET
+      name: '&b&lFat Water Bucket'
+      lore:
+        - '&7Generates a water gen!'
+    messages:
+      - '&7You found a &b&lFat Water Bucket&7!'
+
+  "23":
+    chance: 10.0
+    commands:
+      - 'gen give %player% fat_lava_bucket 1'
+    display:
+      material: BUCKET
+      name: '&6&lFat Lava Bucket'
+      lore:
+        - '&7Generates a lava gen!'
+    messages:
+      - '&7You found a &6&lFat Lava Bucket&7!'
+
+  "24":
+    chance: 14.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&e&l2x Mystery Spawners'
+      lore:
+        - '&7Place to reveal random mobs!'
+    messages:
+      - '&7You found &e&l2x Mystery Mob Spawners&7!'
+
+  "25":
+    chance: 12.0
+    commands:
+      - 'banknote give %player% 20000'
+    display:
+      material: PAPER
+      name: '&a$20,000 Bank Note'
+      lore:
+        - '&7Claim: &a$20,000!'
+    messages:
+      - '&7You found a &a&l$20,000 Bank Balance Note&7!'
+
+  "26":
+    chance: 4.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f sellwand'
+    display:
+      material: STICK
+      name: '&6&lSell Wand'
+      lore:
+        - '&7Sells inventory contents!'
+    messages:
+      - '&7You found a &6&lSell Wand&7!'
+
+  "27":
+    chance: 4.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f tntwand'
+    display:
+      material: TNT
+      name: '&c&lTNT Wand'
+      lore:
+        - '&7Launches TNT at walls!'
+    messages:
+      - '&7You found a &c&lTNT Wand&7!'
+
+  "28":
+    chance: 5.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Unique Supply Crate!'
+
+  "29":
+    chance: 3.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Unique Supply Crate!'

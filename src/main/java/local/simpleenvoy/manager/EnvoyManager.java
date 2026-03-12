@@ -2,6 +2,7 @@ package local.simpleenvoy.manager;
 
 import local.simpleenvoy.SimpleEnvoyPlugin;
 import local.simpleenvoy.manager.CrateRewardManager.CrateTier;
+import local.simpleenvoy.manager.CrateRewardManager.LootReward;
 import org.bukkit.Bukkit;
 import org.bukkit.HeightMap;
 import org.bukkit.Location;
@@ -10,6 +11,9 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -29,12 +33,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
+import java.util.UUID;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 public class EnvoyManager implements Listener {
 
-    public record ActiveCrate(Location location, CrateTier tier, long spawnedAtMs) {}
+    public record ActiveCrate(Location location, CrateTier tier, long spawnedAtMs, UUID hologramId) {}
 
     private final SimpleEnvoyPlugin plugin;
     private final CrateRewardManager rewardManager;
@@ -47,8 +52,10 @@ public class EnvoyManager implements Listener {
 
     private BukkitTask autoTask;
     private BukkitTask timeoutTask;
+    private BukkitTask alertTask;
     private long nextSpawnMs = -1L;
     private long spawnPeriodMs = -1L;
+    private final java.util.List<Long> alertSeconds = new java.util.ArrayList<>();
 
     public EnvoyManager(SimpleEnvoyPlugin plugin, CrateRewardManager rewardManager) {
         this.plugin = plugin;
@@ -58,6 +65,12 @@ public class EnvoyManager implements Listener {
 
     public void reload() {
         this.envoyYaml = YamlConfiguration.loadConfiguration(envoyFile);
+        // Re-parse alert times
+        alertSeconds.clear();
+        for (String s : envoyYaml.getStringList("alert-times")) {
+            long ticks = parseDurationToTicks(s);
+            if (ticks > 0) alertSeconds.add(ticks / 20L);
+        }
         restartScheduler();
     }
 
@@ -73,6 +86,10 @@ public class EnvoyManager implements Listener {
         if (timeoutTask != null) {
             timeoutTask.cancel();
             timeoutTask = null;
+        }
+        if (alertTask != null) {
+            alertTask.cancel();
+            alertTask = null;
         }
     }
 
@@ -102,7 +119,8 @@ public class EnvoyManager implements Listener {
             Block block = location.getBlock();
             block.setType(Material.CHEST);
             CrateTier tier = rollTier();
-            activeCrates.put(key(block.getLocation()), new ActiveCrate(block.getLocation(), tier, System.currentTimeMillis()));
+            UUID hologramId = spawnHologram(block.getLocation(), tier);
+            activeCrates.put(key(block.getLocation()), new ActiveCrate(block.getLocation(), tier, System.currentTimeMillis(), hologramId));
         }
 
         int timeoutSeconds = Math.max(5, envoyYaml.getInt("timeout-time", 300));
@@ -111,8 +129,8 @@ public class EnvoyManager implements Listener {
         }
         timeoutTask = Bukkit.getScheduler().runTaskLater(plugin, this::clearActiveCrates, timeoutSeconds * 20L);
 
-        if (envoyYaml.getBoolean("send-spawn-message", false)) {
-            Bukkit.broadcastMessage("§6[SimpleEnvoy] §e" + activeCrates.size() + " crates spawned.");
+        if (envoyYaml.getBoolean("send-spawn-message", true)) {
+            Bukkit.broadcastMessage("\u00a76\u00a7l[Envoy] \u00a7eAn envoy has started with \u00a7f" + activeCrates.size() + " \u00a7ecrates! Find and collect them for rewards!");
         }
 
         return activeCrates.size();
@@ -125,6 +143,7 @@ public class EnvoyManager implements Listener {
             if (location == null || location.getWorld() == null) {
                 continue;
             }
+            removeHologram(location.getWorld(), crate.hologramId());
             Block block = location.getBlock();
             if (block.getType() == Material.CHEST) {
                 block.setType(Material.AIR);
@@ -165,8 +184,9 @@ public class EnvoyManager implements Listener {
         return resolveAmount(envoyYaml == null ? 0 : envoyYaml.get("amount"));
     }
 
-    @EventHandler
+    @EventHandler(priority = org.bukkit.event.EventPriority.HIGH)
     public void onCrateInteract(PlayerInteractEvent event) {
+        if (event.getHand() == org.bukkit.inventory.EquipmentSlot.OFF_HAND) return;
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
@@ -191,22 +211,44 @@ public class EnvoyManager implements Listener {
         }
 
         activeCrates.remove(key(clicked.getLocation()));
+        removeHologram(clicked.getWorld(), crate.hologramId());
         clicked.setType(Material.AIR);
 
-        int rewardCount = rewardCount(crate.tier());
-        List<ItemStack> rewards = rewardManager.generateRewards(crate.tier(), rewardCount);
-        for (ItemStack reward : rewards) {
-            Map<Integer, ItemStack> leftovers = player.getInventory().addItem(reward);
-            if (!leftovers.isEmpty()) {
-                leftovers.values().forEach(i -> player.getWorld().dropItemNaturally(player.getLocation(), i));
-            }
+        int rewardCount = rewardManager.rewardCount(crate.tier());
+        List<LootReward> rewards = rewardManager.generateRewards(crate.tier(), rewardCount);
+        for (LootReward reward : rewards) {
+            reward.giveToPlayer(player);
         }
 
         if (envoyYaml.getBoolean("broadcast-collect", true)) {
-            Bukkit.broadcastMessage("§6[SimpleEnvoy] §f" + player.getName() + " §ecollected a §f" + crate.tier().name().toLowerCase(Locale.ROOT) + " §ecrate.");
+            Bukkit.broadcastMessage("§6[SimpleEnvoy] §f" + player.getName() + " §ecollected a §f" + crate.tier().getColoredDisplay() + " §ecrate.");
         } else {
-            player.sendMessage("§aCollected §f" + crate.tier().name().toLowerCase(Locale.ROOT) + " §acrate and received " + rewardCount + " rewards.");
+            player.sendMessage("§aCollected §f" + crate.tier().getColoredDisplay() + " §acrate and received §f" + rewardCount + " §arewards.");
         }
+    }
+
+    private UUID spawnHologram(Location chestLocation, CrateTier tier) {
+        if (chestLocation.getWorld() == null) return null;
+        try {
+            Location hologramLoc = chestLocation.clone().add(0.5, 1.35, 0.5);
+            ArmorStand stand = (ArmorStand) hologramLoc.getWorld().spawnEntity(hologramLoc, EntityType.ARMOR_STAND);
+            stand.setVisible(false);
+            stand.setGravity(false);
+            stand.setCanPickupItems(false);
+            stand.setSmall(true);
+            stand.setCustomName(tier.getColoredDisplay() + " §7Envoy");
+            stand.setCustomNameVisible(true);
+            stand.setInvulnerable(true);
+            return stand.getUniqueId();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private void removeHologram(org.bukkit.World world, UUID hologramId) {
+        if (hologramId == null || world == null) return;
+        Entity entity = Bukkit.getEntity(hologramId);
+        if (entity != null) entity.remove();
     }
 
     private String checkAndApplyCooldown(Player player, Location crateLocation) {
@@ -231,14 +273,7 @@ public class EnvoyManager implements Listener {
         return null;
     }
 
-    private int rewardCount(CrateTier tier) {
-        return switch (tier) {
-            case SIMPLE -> 3;
-            case UNIQUE -> 4;
-            case GODLY -> 5;
-            case LEGENDARY -> 6;
-        };
-    }
+
 
     private List<Location> resolveSpawnLocations(int amount) {
         List<Location> out = new ArrayList<>();
@@ -427,27 +462,25 @@ public class EnvoyManager implements Listener {
 
     private CrateTier rollTier() {
         ConfigurationSection rates = envoyYaml.getConfigurationSection("rates");
-        if (rates == null) {
-            rates = envoyYaml.getConfigurationSection("crates");
-        }
+        if (rates == null) rates = envoyYaml.getConfigurationSection("crates");
 
-        int common = rates == null ? 50 : Math.max(0, rates.getInt("common", 50));
-        int rare = rates == null ? 40 : Math.max(0, rates.getInt("rare", 40));
-        int legendary = rates == null ? 30 : Math.max(0, rates.getInt("legendary", 30));
+        int simple    = rates == null ? 45 : Math.max(0, rates.getInt("simple",   rates.getInt("common",    45)));
+        int unique    = rates == null ? 25 : Math.max(0, rates.getInt("unique",   rates.getInt("rare",      25)));
+        int elite     = rates == null ? 15 : Math.max(0, rates.getInt("elite",    15));
+        int ultimate  = rates == null ? 8  : Math.max(0, rates.getInt("ultimate", 8));
+        int legendary = rates == null ? 5  : Math.max(0, rates.getInt("legendary", 5));
+        int godly     = rates == null ? 2  : Math.max(0, rates.getInt("godly",    2));
 
-        int total = common + rare + legendary;
-        if (total <= 0) {
-            return CrateTier.SIMPLE;
-        }
+        int total = simple + unique + elite + ultimate + legendary + godly;
+        if (total <= 0) return CrateTier.SIMPLE;
 
         int roll = random.nextInt(total) + 1;
-        if (roll <= common) {
-            return CrateTier.SIMPLE;
-        }
-        if (roll <= common + rare) {
-            return CrateTier.UNIQUE;
-        }
-        return CrateTier.LEGENDARY;
+        if (roll <= simple)                                          return CrateTier.SIMPLE;
+        if (roll <= simple + unique)                                 return CrateTier.UNIQUE;
+        if (roll <= simple + unique + elite)                         return CrateTier.ELITE;
+        if (roll <= simple + unique + elite + ultimate)              return CrateTier.ULTIMATE;
+        if (roll <= simple + unique + elite + ultimate + legendary)  return CrateTier.LEGENDARY;
+        return CrateTier.GODLY;
     }
 
     private int resolveAmount(Object rawAmount) {
@@ -549,6 +582,10 @@ public class EnvoyManager implements Listener {
             autoTask.cancel();
             autoTask = null;
         }
+        if (alertTask != null) {
+            alertTask.cancel();
+            alertTask = null;
+        }
         nextSpawnMs = -1L;
         spawnPeriodMs = -1L;
 
@@ -568,6 +605,18 @@ public class EnvoyManager implements Listener {
             }
             nextSpawnMs = System.currentTimeMillis() + spawnPeriodMs;
         }, periodTicks, periodTicks);
+
+        // Alert broadcaster: runs every second, broadcasts at configured alert times
+        if (!alertSeconds.isEmpty()) {
+            alertTask = Bukkit.getScheduler().runTaskTimer(plugin, () -> {
+                if (nextSpawnMs < 0) return;
+                long remaining = Math.max(0L, (nextSpawnMs - System.currentTimeMillis()) / 1000L);
+                if (alertSeconds.contains(remaining)) {
+                    String timeStr = formatAlertTime(remaining);
+                    Bukkit.broadcastMessage("\u00a76\u00a7l[Envoy] \u00a7eAn envoy will start in \u00a7f" + timeStr + "\u00a7e!");
+                }
+            }, 20L, 20L);
+        }
     }
 
     /** Returns seconds until the next automatic envoy spawn, or -1 if the scheduler is not running. */
@@ -575,6 +624,20 @@ public class EnvoyManager implements Listener {
         if (nextSpawnMs < 0L || autoTask == null) return -1L;
         long remaining = nextSpawnMs - System.currentTimeMillis();
         return Math.max(0L, remaining / 1000L);
+    }
+
+    private String formatAlertTime(long totalSeconds) {
+        if (totalSeconds >= 3600) {
+            long h = totalSeconds / 3600;
+            long m = (totalSeconds % 3600) / 60;
+            return m > 0 ? h + "h " + m + "m" : h + "h";
+        }
+        if (totalSeconds >= 60) {
+            long m = totalSeconds / 60;
+            long s = totalSeconds % 60;
+            return s > 0 ? m + "m " + s + "s" : m + "m";
+        }
+        return totalSeconds + "s";
     }
 
     private long parseDurationToTicks(String text) {

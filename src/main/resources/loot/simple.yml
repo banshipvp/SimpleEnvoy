@@ -1,0 +1,308 @@
+# SIMPLE Tier Loot Table
+# §7 color — lightest rarity, basic goodies
+reward-amount: 3
+
+entries:
+
+  "0":
+    chance: 35.0
+    commands:
+      - 'banknote give %player% 500'
+    display:
+      material: PAPER
+      name: '&a$500 Bank Note'
+      lore:
+        - '&7Claim: &a$500 &7added to your balance!'
+    messages:
+      - '&7You found a &a&l$500 Bank Note&7 in the Simple Supply Crate!'
+
+  "1":
+    chance: 22.0
+    commands:
+      - 'banknote give %player% 1000'
+    display:
+      material: PAPER
+      name: '&a$1,000 Bank Note'
+      lore:
+        - '&7Claim: &a$1,000!'
+    messages:
+      - '&7You found a &a&l$1,000 Bank Note&7!'
+
+  "2":
+    chance: 8.0
+    commands:
+      - 'banknote give %player% 2500'
+    display:
+      material: PAPER
+      name: '&a$2,500 Bank Note'
+      lore:
+        - '&6Lucky! &7Claim: &a$2,500!'
+    messages:
+      - '&6&lLucky! &7You found a &a&l$2,500 Bank Note&7!'
+
+  # ─── Crate Keys ──────────────────────────────────────────────────────────────
+  "3":
+    chance: 22.0
+    commands:
+      - 'crate give %player% simple 1'
+    display:
+      material: TRIPWIRE_HOOK
+      name: '&f&lSimple Crate Key'
+      lore:
+        - '&7Opens a &fSimple&7 Crate!'
+    messages:
+      - '&7You found a &f&lSimple Crate Key&7!'
+
+  "4":
+    chance: 12.0
+    commands:
+      - 'crate give %player% unique 1'
+    display:
+      material: TRIPWIRE_HOOK
+      name: '&a&lUnique Crate Key'
+      lore:
+        - '&7Opens a &aUnique&7 Crate!'
+    messages:
+      - '&7You found an &a&lUnique Crate Key&7!'
+
+  # ─── GKit Gems ───────────────────────────────────────────────────────────────
+  "5":
+    chance: 10.0
+    commands:
+      - 'gkitgem give %player% starter 1'
+    display:
+      material: NETHER_STAR
+      name: '&f&lStarter GKit Gem'
+      lore:
+        - '&7Unlocks the &fStarter GKit&7!'
+        - '&8Powered by SimpleKits'
+    messages:
+      - '&7You found a &f&lStarter GKit Gem&7!'
+
+  # ─── Custom Enchant Books ────────────────────────────────────────────────────
+  "6":
+    chance: 18.0
+    commands:
+      - 'fegiveitem randombook %player% SIMPLE 1'
+    display:
+      material: BOOK
+      name: '&f&l✦ Simple Enchant Book'
+      lore:
+        - '&7A random &fSimple&7 tier custom enchant!'
+        - '&8Powered by FactionEnchants'
+    messages:
+      - '&7You found a &f&lSimple Enchant Book&7!'
+
+  "7":
+    chance: 8.0
+    commands:
+      - 'fegiveitem randombook %player% SIMPLE 4'
+    display:
+      material: BOOK
+      name: '&f&l✦ Simple Enchant Books &7x4'
+      lore:
+        - '&7Four random &fSimple&7 tier custom enchants!'
+    messages:
+      - '&7You found &f&l4x Simple Enchant Books&7!'
+
+  "8":
+    chance: 10.0
+    commands:
+      - 'fegiveitem blackscroll %player% 1'
+    display:
+      material: INK_SAC
+      name: '&8&l⚫ Black Scroll'
+      lore:
+        - '&7Extracts an enchant from gear!'
+        - '&8Powered by FactionEnchants'
+    messages:
+      - '&7You found a &8&lBlack Scroll&7!'
+
+  # ─── Stored XP Bottles ───────────────────────────────────────────────────────
+  "9":
+    chance: 20.0
+    commands:
+      - 'fegiveitem xp %player% 500'
+    display:
+      material: EXPERIENCE_BOTTLE
+      name: '&a&l⭐ Stored XP &7(500 XP)'
+      lore:
+        - '&7Right-click to absorb &a500 XP&7!'
+        - '&8Powered by FactionEnchants'
+    messages:
+      - '&7You found a &a&l500 XP Bottle&7!'
+
+  "10":
+    chance: 10.0
+    commands:
+      - 'fegiveitem xp %player% 1000'
+    display:
+      material: EXPERIENCE_BOTTLE
+      name: '&a&l⭐ Stored XP &7(1,000 XP)'
+      lore:
+        - '&7Right-click to absorb &a1,000 XP&7!'
+    messages:
+      - '&7You found a &a&l1,000 XP Bottle&7!'
+
+  # ─── Spawners ────────────────────────────────────────────────────────────────
+  "11":
+    chance: 22.0
+    commands:
+      - 'spawner give %player% mystery'
+    display:
+      material: SPAWNER
+      name: '&6&l??? Mystery Spawner ???'
+      lore:
+        - '&7Place to reveal a random mob!'
+        - '&8Powered by SimpleKits'
+    messages:
+      - '&7You found a &6&lMystery Mob Spawner&7!'
+
+  "12":
+    chance: 15.0
+    commands:
+      - 'spawner give %player% pig'
+    display:
+      material: SPAWNER
+      name: '&e&lPig Spawner'
+      lore:
+        - '&7Spawns Pigs!'
+    messages:
+      - '&7You found a &e&lPig Spawner&7!'
+
+  "13":
+    chance: 15.0
+    commands:
+      - 'spawner give %player% cow'
+    display:
+      material: SPAWNER
+      name: '&e&lCow Spawner'
+      lore:
+        - '&7Spawns Cows!'
+    messages:
+      - '&7You found a &e&lCow Spawner&7!'
+
+  "14":
+    chance: 12.0
+    commands:
+      - 'spawner give %player% chicken'
+    display:
+      material: SPAWNER
+      name: '&e&lChicken Spawner'
+      lore:
+        - '&7Spawns Chickens!'
+    messages:
+      - '&7You found a &e&lChicken Spawner&7!'
+
+  "15":
+    chance: 10.0
+    commands:
+      - 'spawner give %player% sheep'
+    display:
+      material: SPAWNER
+      name: '&e&lSheep Spawner'
+      lore:
+        - '&7Spawns Sheep!'
+    messages:
+      - '&7You found a &e&lSheep Spawner&7!'
+
+  # ─── Golden Apples ───────────────────────────────────────────────────────────
+  "16":
+    chance: 15.0
+    commands:
+      - 'give %player% golden_apple 8'
+    display:
+      material: GOLDEN_APPLE
+      name: '&6&l8x Golden Apples'
+      lore:
+        - '&7Claim!'
+    messages:
+      - '&7You found &6&l8x Golden Apples&7!'
+
+  "17":
+    chance: 8.0
+    commands:
+      - 'give %player% golden_apple 16'
+    display:
+      material: GOLDEN_APPLE
+      name: '&6&l16x Golden Apples'
+      lore:
+        - '&6Lucky! &7Claim!'
+    messages:
+      - '&6&lLucky! &7You found &6&l16x Golden Apples&7!'
+
+  # ─── Combat / Utility ────────────────────────────────────────────────────────
+  "18":
+    chance: 18.0
+    commands:
+      - 'give %player% ender_pearl 8'
+    display:
+      material: ENDER_PEARL
+      name: '&5&l8x Ender Pearls'
+      lore:
+        - '&7Claim!'
+    messages:
+      - '&7You found &5&l8x Ender Pearls&7!'
+
+  "19":
+    chance: 18.0
+    commands:
+      - 'give %player% arrow 16'
+    display:
+      material: ARROW
+      name: '&f&l16x Arrows'
+      lore:
+        - '&7Claim!'
+    messages:
+      - '&7You found &f&l16x Arrows&7!'
+
+  "20":
+    chance: 12.0
+    commands:
+      - 'give %player% tnt 8'
+    display:
+      material: TNT
+      name: '&c&l8x TNT'
+      lore:
+        - '&7Claim!'
+    messages:
+      - '&7You found &c&l8x TNT&7!'
+  "21":
+    chance: 15.0
+    commands:
+      - 'gkitpiece give %player% starter'
+    display:
+      material: NETHER_STAR
+      name: '&f&l✶ Starter GKit Piece'
+      lore:
+        - '&7A random piece of the &fStarter&7 GKit!'
+        - '&8Powered by SimpleKits'
+    messages:
+      - '&7You found a &f&lStarter GKit Piece&7!'
+
+  "22":
+    chance: 20.0
+    commands:
+      - 'fegiveitem duststack %player% SIMPLE 10'
+    display:
+      material: GLOWSTONE_DUST
+      name: '&f&l✶ Simple Mystery Dust &7x10'
+      lore:
+        - '&7Boosts enchant success rate!'
+        - '&8Powered by FactionEnchants'
+    messages:
+      - '&7You found &f&l10x Simple Mystery Dust&7!'
+
+  "23":
+    chance: 5.0
+    commands:
+      - 'rankvoucher give %player% scout 1'
+    display:
+      material: PAPER
+      name: '&7&l✶ Scout Rank Voucher'
+      lore:
+        - '&7Upgrades your rank to &7Scout&7!'
+        - '&7Right-click to apply'
+    messages:
+      - '&6&l✶ LUCKY! &7You found a &7&lScout Rank Voucher&7!'
+

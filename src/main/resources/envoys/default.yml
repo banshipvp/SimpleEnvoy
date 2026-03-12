@@ -1,7 +1,10 @@
 rates:
-  common: 50
-  rare: 40
-  legendary: 30
+  simple: 45
+  unique: 25
+  elite: 15
+  ultimate: 8
+  legendary: 5
+  godly: 2
 
 amount: 30
 limit-predefined: true
@@ -11,17 +14,21 @@ broadcast-collect: true
 timeout-time: 300
 every: 30m
 top-block-finder: heightmap
-send-spawn-message: false
+send-spawn-message: true
 alert-times:
-  - 30m
   - 10m
+  - 5m
+  - 1m
+  - 30s
+  - 10s
   - 5s
+  - 4s
   - 3s
   - 2s
   - 1s
 times: []
 only-in-global: false
-min-players: 2
+min-players: 0
 
 random-spawn:
   enabled: true
@@ -31,9 +38,9 @@ random-spawn:
     z: 100
   min-distance: 20
   min-height: 10
-  max-height: 255
+  max-height: 130
   heightmap: MOTION_BLOCKING
-  min-distance-between-crates: 0
+  min-distance-between-crates: 10
   not-on-blocks:
     - (?<!s)t?air(?!s)
     - (leaves)
@@ -63,6 +70,9 @@ pre-defined-spawns:
     - world;1;80;1
 
 crates:
-  common: 50
-  rare: 40
-  legendary: 30
+  simple: 45
+  unique: 25
+  elite: 15
+  ultimate: 8
+  legendary: 5
+  godly: 2

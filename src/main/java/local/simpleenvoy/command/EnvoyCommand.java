@@ -1,26 +1,35 @@
 package local.simpleenvoy.command;
 
 import local.simpleenvoy.SimpleEnvoyPlugin;
+import local.simpleenvoy.manager.CrateRewardManager;
+import local.simpleenvoy.manager.CrateRewardManager.CrateTier;
 import local.simpleenvoy.manager.EnvoyManager;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class EnvoyCommand implements CommandExecutor, TabCompleter {
 
     private final SimpleEnvoyPlugin plugin;
     private final EnvoyManager envoyManager;
+    private final CrateRewardManager rewardManager;
 
     public EnvoyCommand(SimpleEnvoyPlugin plugin, EnvoyManager envoyManager) {
         this.plugin = plugin;
         this.envoyManager = envoyManager;
+        this.rewardManager = plugin.getRewardManager();
     }
 
     @Override
@@ -85,6 +94,39 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage("§aReloaded §fenvoys/default.yml§a.");
                 return true;
             }
+            case "edit" -> {
+                if (args.length < 2) {
+                    String tierList = Arrays.stream(CrateTier.values())
+                            .map(t -> t.name().toLowerCase(Locale.ROOT))
+                            .collect(Collectors.joining(", "));
+                    sender.sendMessage("§cUsage: §e/envoy edit <tier> §7(" + tierList + ")");
+                    return true;
+                }
+                if (!(sender instanceof Player player)) {
+                    sender.sendMessage("§cOnly players can use /envoy edit.");
+                    return true;
+                }
+                CrateTier tier;
+                try {
+                    tier = CrateTier.valueOf(args[1].toUpperCase(Locale.ROOT));
+                } catch (IllegalArgumentException e) {
+                    String tierList = Arrays.stream(CrateTier.values())
+                            .map(t -> t.name().toLowerCase(Locale.ROOT))
+                            .collect(Collectors.joining(", "));
+                    sender.sendMessage("§cInvalid tier. Valid tiers: " + tierList);
+                    return true;
+                }
+                List<ItemStack> preview = rewardManager.getPreviewItems(tier);
+                if (preview.isEmpty()) {
+                    player.sendMessage("§cNo loot preview available for " + tier.getColoredDisplay() + "§c.");
+                    return true;
+                }
+                int rows = Math.max(1, Math.min(6, (int) Math.ceil(preview.size() / 9.0)));
+                Inventory gui = Bukkit.createInventory(null, rows * 9, tier.getColoredDisplay() + " §7Loot Preview");
+                preview.forEach(gui::addItem);
+                player.openInventory(gui);
+                return true;
+            }
             default -> {
                 sender.sendMessage("§e/envoy §7- show next-envoy countdown");
                 sender.sendMessage("§e/envoy start §7- spawn crates now");
@@ -92,6 +134,7 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter {
                 sender.sendMessage("§e/envoy clear §7- remove active crates");
                 sender.sendMessage("§e/envoy reload §7- reload envoys/default.yml");
                 sender.sendMessage("§e/envoy status §7- show detailed settings");
+                sender.sendMessage("§e/envoy edit <tier> §7- preview loot for a tier");
                 return true;
             }
         }
@@ -101,12 +144,21 @@ public class EnvoyCommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
             String prefix = args[0].toLowerCase(Locale.ROOT);
-            List<String> options = List.of("start", "setspawn", "clear", "reload", "status");
+            List<String> options = List.of("start", "setspawn", "clear", "reload", "status", "edit");
             List<String> out = new ArrayList<>();
             for (String opt : options) {
                 if (opt.startsWith(prefix)) {
                     out.add(opt);
                 }
+            }
+            return out;
+        }
+        if (args.length == 2 && args[0].equalsIgnoreCase("edit")) {
+            String prefix = args[1].toLowerCase(Locale.ROOT);
+            List<String> out = new ArrayList<>();
+            for (CrateTier t : CrateTier.values()) {
+                String name = t.name().toLowerCase(Locale.ROOT);
+                if (name.startsWith(prefix)) out.add(name);
             }
             return out;
         }

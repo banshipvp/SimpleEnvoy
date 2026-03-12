@@ -52,6 +52,10 @@ public class SimpleEnvoyPlugin extends JavaPlugin {
         return envoyManager;
     }
 
+    public CrateRewardManager getRewardManager() {
+        return rewardManager;
+    }
+
     private void createDefaultFiles() {
         if (!getDataFolder().exists() && !getDataFolder().mkdirs()) {
             getLogger().warning("Could not create plugin data folder.");
@@ -64,15 +68,31 @@ public class SimpleEnvoyPlugin extends JavaPlugin {
 
         File defaultEnvoy = new File(envoysFolder, "default.yml");
         if (!defaultEnvoy.exists()) {
-            try (InputStream in = getResource("envoys/default.yml")) {
-                if (in == null) {
-                    getLogger().warning("Missing bundled envoys/default.yml resource.");
-                    return;
-                }
-                Files.copy(in, defaultEnvoy.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException ex) {
-                getLogger().severe("Failed to copy envoys/default.yml: " + ex.getMessage());
+            copyResource("envoys/default.yml", defaultEnvoy);
+        }
+
+        // Copy loot tables (always overwrite to keep them up to date)
+        File lootFolder = new File(getDataFolder(), "loot");
+        if (!lootFolder.exists() && !lootFolder.mkdirs()) {
+            getLogger().warning("Could not create loot folder.");
+        }
+        for (String tier : new String[]{"simple", "unique", "elite", "ultimate", "legendary", "godly"}) {
+            File dest = new File(lootFolder, tier + ".yml");
+            if (!dest.exists()) {
+                copyResource("loot/" + tier + ".yml", dest);
             }
+        }
+    }
+
+    private void copyResource(String resourcePath, File dest) {
+        try (InputStream in = getResource(resourcePath)) {
+            if (in == null) {
+                getLogger().warning("Missing bundled resource: " + resourcePath);
+                return;
+            }
+            Files.copy(in, dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            getLogger().severe("Failed to copy " + resourcePath + ": " + ex.getMessage());
         }
     }
 }

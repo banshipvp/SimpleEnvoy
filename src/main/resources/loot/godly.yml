@@ -1,0 +1,451 @@
+# GODLY Tier Loot Table — heroic-exclusive ultra-OP content
+# §d color (light purple/pink) — sixth and highest rarity tier
+# Only found in Heroic (Nether) and rarely in Plains envoys
+reward-amount: 5
+
+entries:
+  "0":
+    chance: 20.0
+    commands:
+      - 'banknote give %player% 1000000'
+    display:
+      material: PAPER
+      name: '&d$1,000,000 Bank Note'
+      lore:
+        - '&6&l!!!GODLY JACKPOT!!! &7Claim: &a$1,000,000!'
+    messages:
+      - '&d&l!!!GODLY JACKPOT!!! &7You found a &d&l$1,000,000 Bank Balance Note&7 in the Godly Supply Crate!'
+
+  "1":
+    chance: 10.0
+    commands:
+      - 'banknote give %player% 2500000'
+    display:
+      material: PAPER
+      name: '&d$2,500,000 Bank Note'
+      lore:
+        - '&d&l!!!ULTRA JACKPOT!!! &7Claim: &a$2,500,000!'
+    messages:
+      - '&d&l!!!ULTRA JACKPOT!!! &7You found a &d&l$2,500,000 Bank Balance Note&7!'
+
+  "2":
+    chance: 2.0
+    commands:
+      - 'banknote give %player% 5000000'
+    display:
+      material: PAPER
+      name: '&d&l$5,000,000 Bank Note'
+      lore:
+        - '&d&l!!!GODLY JACKPOT!!! &7Claim: &a$5,000,000!'
+    messages:
+      - '&d&l!!!SERVER FIRST!!! &7You found a &d&l$5,000,000 Bank Balance Note&7!'
+
+  "3":
+    chance: 18.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&e&l5x Mystery Spawners'
+      lore:
+        - '&7Place to reveal 5 random mobs!'
+    messages:
+      - '&7You found &e&l5x Mystery Mob Spawners&7!'
+
+  "4":
+    chance: 8.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&d&l10x Mystery Spawners'
+      lore:
+        - '&d&l!!!INCREDIBLE!!! &7Place to reveal 10 random mobs!'
+    messages:
+      - '&d&l!!!INCREDIBLE!!! &7You found &e&l10x Mystery Mob Spawners&7!'
+
+  "5":
+    chance: 16.0
+    commands:
+      - 'simplecrates:crate give %player% legendary 1'
+    display:
+      material: CHEST
+      name: '&6&lLegendary Crate Key'
+      lore:
+        - '&7Opens a Legendary Crate!'
+    messages:
+      - '&7You found a &6&lLegendary Crate Key&7!'
+
+  "6":
+    chance: 14.0
+    commands:
+      - 'simplecrates:crate give %player% godly 1'
+    display:
+      material: CHEST
+      name: '&d&lGodly Crate Key'
+      lore:
+        - '&7Opens a Godly Crate!'
+    messages:
+      - '&7You found a &d&lGodly Crate Key&7!'
+
+  "7":
+    chance: 6.0
+    commands:
+      - 'simplecrates:crate give %player% godly 3'
+    display:
+      material: CHEST
+      name: '&d&l3x Godly Crate Keys'
+      lore:
+        - '&7Opens 3 Godly Crates!'
+    messages:
+      - '&7You found &d&l3x Godly Crate Keys&7!'
+
+  "8":
+    chance: 25.0
+    commands:
+      - 'rankvoucher give %player% sovereign 1'
+    display:
+      material: BOOK
+      name: '&6&lSovereign Rank Voucher'
+      lore:
+        - '&7Redeem for Sovereign rank!'
+    messages:
+      - '&7You received a &6&lSovereign Rank Voucher&7!'
+
+  "9":
+    chance: 18.0
+    commands:
+      - 'gkitgem give %player% sovereign'
+    display:
+      material: NETHER_STAR
+      name: '&6&lSovereign GKit Gem'
+      lore:
+        - '&7Powered by SimpleKits'
+    messages:
+      - '&7You found a &6&lSovereign GKit Gem&7!'
+
+  "10":
+    chance: 8.0
+    commands:
+      - 'gkitgem give %player% sovereign'
+      - 'gkitgem give %player% sovereign'
+      - 'gkitgem give %player% sovereign'
+    display:
+      material: NETHER_STAR
+      name: '&d&l3x Sovereign GKit Gems'
+      lore:
+        - '&7Powered by SimpleKits'
+    messages:
+      - '&d&l!!!GODLY ROLL!!! &7You found &6&l3x Sovereign GKit Gems&7!'
+
+  "11":
+    chance: 22.0
+    items:
+      "0":
+        material: NETHERITE_SWORD
+        name: '&d&lGodly GKIT Piece &7- &fSword'
+        enchants:
+          SHARPNESS: 5
+          UNBREAKING: 3
+          FIRE_ASPECT: 2
+          LOOTING: 3
+        lore:
+          - 'Vampiric IV'
+          - 'Execute IV'
+          - 'Deathbringer IV'
+          - 'Overload IV'
+        amount: 1
+    messages:
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Sword Piece&7!'
+
+  "12":
+    chance: 20.0
+    items:
+      "0":
+        material: NETHERITE_HELMET
+        name: '&d&lGodly GKIT Piece &7- &fHelmet'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          RESPIRATION: 3
+          AQUA_AFFINITY: 1
+          MENDING: 1
+        lore:
+          - 'Armored IV'
+          - 'Tank IV'
+          - 'Overload IV'
+          - 'Lifesteal I'
+        amount: 1
+    messages:
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Helmet Piece&7!'
+
+  "13":
+    chance: 18.0
+    items:
+      "0":
+        material: NETHERITE_CHESTPLATE
+        name: '&d&lGodly GKIT Piece &7- &fChestplate'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          MENDING: 1
+        lore:
+          - 'Armored IV'
+          - 'Overload IV'
+          - 'Tank IV'
+          - 'Lifesteal I'
+        amount: 1
+    messages:
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Chestplate Piece&7!'
+
+  "14":
+    chance: 16.0
+    items:
+      "0":
+        material: NETHERITE_LEGGINGS
+        name: '&d&lGodly GKIT Piece &7- &fLeggings'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          MENDING: 1
+        lore:
+          - 'Tank IV'
+          - 'Armored IV'
+          - 'Lifesteal I'
+        amount: 1
+    messages:
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Leggings Piece&7!'
+
+  "15":
+    chance: 16.0
+    items:
+      "0":
+        material: NETHERITE_BOOTS
+        name: '&d&lGodly GKIT Piece &7- &fBoots'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          FEATHER_FALLING: 4
+          DEPTH_STRIDER: 3
+          MENDING: 1
+        lore:
+          - 'Springs IV'
+          - 'Anti Gravity IV'
+          - 'AntiFall II'
+          - 'Lifesteal I'
+        amount: 1
+    messages:
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Boots Piece&7!'
+
+  "16":
+    chance: 18.0
+    items:
+      "0":
+        material: NETHERITE_AXE
+        name: '&d&lGodly GKIT Piece &7- &fAxe'
+        enchants:
+          SHARPNESS: 5
+          UNBREAKING: 3
+          EFFICIENCY: 5
+          MENDING: 1
+        lore:
+          - 'Deathbringer IV'
+          - 'Execute IV'
+          - 'Overload III'
+        amount: 1
+    messages:
+      - '&d&l!!!GODLY!!! &7You rolled a &d&lGodly GKIT Axe Piece&7!'
+
+  "17":
+    chance: 22.0
+    commands:
+      - 'give %player% enchanted_golden_apple 32'
+    display:
+      material: ENCHANTED_GOLDEN_APPLE
+      name: '&d&l32x Enchanted Golden Apples'
+      lore:
+        - '&7Half a stack of god apples!'
+    messages:
+      - '&d&l!!!GODLY!!! &7You found &6&l32x Enchanted Golden Apples&7!'
+
+  "18":
+    chance: 18.0
+    items:
+      "0":
+        material: EXPERIENCE_BOTTLE
+        name: '&b&lXP Bottle &7- 50,000 XP'
+        lore:
+          - '&7Right-click to consume'
+        amount: 1
+    messages:
+      - '&d&l!!!GODLY!!! &7You found a &b&l50,000 XP Bottle&7!'
+
+  "19":
+    chance: 20.0
+    commands:
+      - 'give %player% totem_of_undying 3'
+    display:
+      material: TOTEM_OF_UNDYING
+      name: '&6&l3x Totems of Undying'
+      lore:
+        - '&7Saves you from death 3 times!'
+    messages:
+      - '&7You found &6&l3x Totems of Undying&7!'
+
+  "20":
+    chance: 16.0
+    commands:
+      - 'give %player% ancient_debris 8'
+    display:
+      material: ANCIENT_DEBRIS
+      name: '&5&l8x Ancient Debris'
+      lore:
+        - '&7Smelt into Netherite Scrap!'
+    messages:
+      - '&d&l!!!GODLY!!! &7You found &5&l8x Ancient Debris&7!'
+
+  "21":
+    chance: 14.0
+    commands:
+      - 'give %player% netherite_ingot 5'
+    display:
+      material: NETHERITE_INGOT
+      name: '&5&l5x Netherite Ingots'
+      lore:
+        - '&7Click to claim!'
+    messages:
+      - '&d&l!!!GODLY!!! &7You found &5&l5x Netherite Ingots&7!'
+
+  "22":
+    chance: 10.0
+    commands:
+      - 'give %player% beacon 1'
+    display:
+      material: BEACON
+      name: '&d&lBeacon'
+      lore:
+        - '&7Place for powerful permanent buffs!'
+    messages:
+      - '&d&l!!!GODLY!!! &7You found a &d&lBeacon&7!'
+
+  "23":
+    chance: 16.0
+    commands:
+      - 'gen give %player% fat_water_bucket 5'
+    display:
+      material: BUCKET
+      name: '&b&l5x Fat Water Buckets'
+      lore:
+        - '&7Generates water gens!'
+    messages:
+      - '&7You found &b&l5x Fat Water Buckets&7!'
+
+  "24":
+    chance: 14.0
+    commands:
+      - 'gen give %player% fat_lava_bucket 5'
+    display:
+      material: BUCKET
+      name: '&6&l5x Fat Lava Buckets'
+      lore:
+        - '&7Generates lava gens!'
+    messages:
+      - '&7You found &6&l5x Fat Lava Buckets&7!'
+
+  "25":
+    chance: 10.0
+    commands:
+      - 'gen give %player% lava_gen_bucket 4'
+    display:
+      material: BUCKET
+      name: '&c&l4x Lava Gen Buckets'
+      lore:
+        - '&7Generates lava!'
+    messages:
+      - '&7You found &c&l4x Lava Gen Buckets&7!'
+
+  "26":
+    chance: 10.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f sellwand'
+    display:
+      material: STICK
+      name: '&6&lSell Wand'
+      lore:
+        - '&7Sells inventory contents!'
+    messages:
+      - '&7You found a &6&lSell Wand&7!'
+
+  "27":
+    chance: 10.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f tntwand'
+    display:
+      material: TNT
+      name: '&c&lTNT Wand'
+      lore:
+        - '&7Launches TNT at walls!'
+    messages:
+      - '&7You found a &c&lTNT Wand&7!'
+
+  "28":
+    chance: 4.0
+    commands:
+      - 'simplecrates:crate give %player% godly 5'
+    display:
+      material: CHEST
+      name: '&d&l5x Godly Crate Keys'
+      lore:
+        - '&d&l!!!ULTRA RARE!!! &7Opens 5 Godly Crates!'
+    messages:
+      - '&d&l!!!ULTRA RARE!!! &7You found &d&l5x Godly Crate Keys&7!'
+
+  "29":
+    chance: 2.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Godly Supply Crate!'
+
+  "30":
+    chance: 3.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Godly Supply Crate!'
+
+  "31":
+    chance: 6.0
+    commands:
+      - 'fegiveitem soulgem %player% 5000'
+    display:
+      material: EMERALD
+      name: '&c&l Soul Gem &8[5000 souls]'
+      lore:
+        - '&7Toggle SOUL enchants ON/OFF!'
+        - '&c5000 &7soul charges'
+    messages:
+      - '&7You found a &c&l Soul Gem &7(5000 charges) in the Godly Supply Crate!'

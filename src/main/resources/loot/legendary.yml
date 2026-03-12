@@ -1,0 +1,276 @@
+# LEGENDARY Tier Loot Table — ported from AxEnvoy boss.yml
+# §6 color (gold) — fifth rarity tier (very rare)
+reward-amount: 5
+
+entries:
+  "0":
+    chance: 25.0
+    commands:
+      - 'banknote give %player% 250000'
+    display:
+      material: PAPER
+      name: '&6$250,000 Bank Note'
+      lore:
+        - '&7Claim: &a$250,000!'
+    messages:
+      - '&7You found a &6&l$250,000 Bank Balance Note&7 in the Legendary Supply Crate!'
+
+  "1":
+    chance: 16.0
+    commands:
+      - 'banknote give %player% 500000'
+    display:
+      material: PAPER
+      name: '&6$500,000 Bank Note'
+      lore:
+        - '&6&l!!!JACKPOT!!! &7Claim: &a$500,000!'
+    messages:
+      - '&6&l!!!JACKPOT!!! &7You found a &6&l$500,000 Bank Balance Note&7!'
+
+  "2":
+    chance: 4.0
+    commands:
+      - 'banknote give %player% 1000000'
+    display:
+      material: PAPER
+      name: '&6&l$1,000,000 Bank Note'
+      lore:
+        - '&d&l!!!LEGENDARY JACKPOT!!! &7Claim: &a$1,000,000!'
+    messages:
+      - '&d&l!!!LEGENDARY JACKPOT!!! &7You found a &6&l$1,000,000 Bank Balance Note&7!'
+
+  "3":
+    chance: 18.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&e&l3x Mystery Spawners'
+      lore:
+        - '&7Place to reveal 3 random mobs!'
+    messages:
+      - '&7You found &e&l3x Mystery Mob Spawners&7!'
+
+  "4":
+    chance: 10.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&e&l5x Mystery Spawners'
+      lore:
+        - '&7Place to reveal 5 random mobs!'
+    messages:
+      - '&7You found &e&l5x Mystery Mob Spawners&7!'
+
+  "5":
+    chance: 14.0
+    commands:
+      - 'simplecrates:crate give %player% ultimate 1'
+    display:
+      material: CHEST
+      name: '&5&lUltimate Crate Key'
+      lore:
+        - '&7Opens an Ultimate Crate!'
+    messages:
+      - '&7You found an &5&lUltimate Crate Key&7!'
+
+  "6":
+    chance: 10.0
+    commands:
+      - 'simplecrates:crate give %player% legendary 1'
+    display:
+      material: CHEST
+      name: '&6&lLegendary Crate Key'
+      lore:
+        - '&7Opens a Legendary Crate!'
+    messages:
+      - '&7You found a &6&lLegendary Crate Key&7!'
+
+  "7":
+    chance: 8.0
+    commands:
+      - 'simplecrates:crate give %player% godly 1'
+    display:
+      material: CHEST
+      name: '&d&lGodly Crate Key'
+      lore:
+        - '&7Opens a Godly Crate!'
+    messages:
+      - '&7You found a &d&lGodly Crate Key&7!'
+
+  "8":
+    chance: 30.0
+    commands:
+      - 'rankvoucher give %player% royalty 1'
+    display:
+      material: BOOK
+      name: '&6&lRoyalty Rank Voucher'
+      lore:
+        - '&7Redeem for Sovereign rank!'
+    messages:
+      - '&7You received a &6&lRoyalty Rank Voucher&7!'
+
+  "9":
+    chance: 18.0
+    commands:
+      - 'gkitgem give %player% royalty'
+    display:
+      material: NETHER_STAR
+      name: '&6&lRoyalty GKit Gem'
+      lore:
+        - '&7Powered by SimpleKits'
+    messages:
+      - '&7You found a &6&lRoyalty GKit Gem&7!'
+
+  "10":
+    chance: 28.0
+    commands:
+      - 'give %player% enchanted_golden_apple 16'
+    display:
+      material: ENCHANTED_GOLDEN_APPLE
+      name: '&6&l16x Enchanted Golden Apples'
+      lore:
+        - '&7Click to claim!'
+    messages:
+      - '&7You found &6&l16x Enchanted Golden Apples&7!'
+
+  "11":
+    chance: 20.0
+    items:
+      "0":
+        material: EXPERIENCE_BOTTLE
+        name: '&b&lXP Bottle &7- 25,000 XP'
+        lore:
+          - '&7Right-click to consume'
+        amount: 1
+    messages:
+      - '&7You found a &b&l25,000 XP Bottle&7!'
+
+  "12":
+    chance: 18.0
+    commands:
+      - 'give %player% totem_of_undying 1'
+    display:
+      material: TOTEM_OF_UNDYING
+      name: '&6&lTotem of Undying'
+      lore:
+        - '&7Saves you from death!'
+    messages:
+      - '&7You found a &6&lTotem of Undying&7!'
+
+  "13":
+    chance: 12.0
+    commands:
+      - 'gen give %player% fat_water_bucket 3'
+    display:
+      material: BUCKET
+      name: '&b&l3x Fat Water Buckets'
+      lore:
+        - '&7Generates water gens!'
+    messages:
+      - '&7You found &b&l3x Fat Water Buckets&7!'
+
+  "14":
+    chance: 10.0
+    commands:
+      - 'gen give %player% fat_lava_bucket 3'
+    display:
+      material: BUCKET
+      name: '&6&l3x Fat Lava Buckets'
+      lore:
+        - '&7Generates lava gens!'
+    messages:
+      - '&7You found &6&l3x Fat Lava Buckets&7!'
+
+  "15":
+    chance: 8.0
+    commands:
+      - 'gen give %player% lava_gen_bucket 2'
+    display:
+      material: BUCKET
+      name: '&c&l2x Lava Gen Buckets'
+      lore:
+        - '&7Generates lava!'
+    messages:
+      - '&7You found &c&l2x Lava Gen Buckets&7!'
+
+  "16":
+    chance: 8.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f sellwand'
+    display:
+      material: STICK
+      name: '&6&lSell Wand'
+      lore:
+        - '&7Sells inventory contents!'
+    messages:
+      - '&7You found a &6&lSell Wand&7!'
+
+  "17":
+    chance: 8.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f tntwand'
+    display:
+      material: TNT
+      name: '&c&lTNT Wand'
+      lore:
+        - '&7Launches TNT at walls!'
+    messages:
+      - '&7You found a &c&lTNT Wand&7!'
+
+  "18":
+    chance: 2.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Legendary Supply Crate!'
+
+  "19":
+    chance: 4.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Legendary Supply Crate!'
+
+  "20":
+    chance: 5.0
+    commands:
+      - 'fegiveitem soulgem %player% 2500'
+    display:
+      material: EMERALD
+      name: '&c&l Soul Gem &8[2500 souls]'
+      lore:
+        - '&7Toggle SOUL enchants ON/OFF!'
+        - '&c2500 &7soul charges'
+    messages:
+      - '&7You found a &c&l Soul Gem &7(2500 charges) in the Legendary Supply Crate!'
+  "21":
+    chance: 22.0
+    commands:
+      - 'gkitpiece give %player% royalty'
+    display:
+      material: NETHER_STAR
+      name: '&d&l✦ Royalty GKit Piece'
+      lore:
+        - '&7A random piece of the &dRoyalty&7 GKit!'
+        - '&8Powered by SimpleKits'
+    messages:
+      - '&7You found a &d&lRoyalty GKit Piece&7!'
+

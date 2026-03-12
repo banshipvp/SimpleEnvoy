@@ -1,0 +1,410 @@
+# ULTIMATE Tier Loot Table — custom (between Elite and Legendary)
+# §5 color (dark purple) — fourth rarity tier
+reward-amount: 4
+
+entries:
+  "0":
+    chance: 22.0
+    commands:
+      - 'banknote give %player% 100000'
+    display:
+      material: PAPER
+      name: '&a$100,000 Bank Note'
+      lore:
+        - '&7Claim: &a$100,000!'
+    messages:
+      - '&7You found a &a&l$100,000 Bank Balance Note&7 in the Ultimate Supply Crate!'
+
+  "1":
+    chance: 14.0
+    commands:
+      - 'banknote give %player% 250000'
+    display:
+      material: PAPER
+      name: '&6$250,000 Bank Note'
+      lore:
+        - '&6&lLUCKY! &7Claim: &a$250,000!'
+    messages:
+      - '&6&lLUCKY! &7You found a &6&l$250,000 Bank Balance Note&7!'
+
+  "2":
+    chance: 6.0
+    commands:
+      - 'banknote give %player% 500000'
+    display:
+      material: PAPER
+      name: '&6$500,000 Bank Note'
+      lore:
+        - '&6&l!!!JACKPOT!!! &7Claim: &a$500,000!'
+    messages:
+      - '&6&l!!!JACKPOT!!! &7You found a &6&l$500,000 Bank Balance Note&7!'
+
+  "3":
+    chance: 20.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&e&l3x Mystery Spawners'
+      lore:
+        - '&7Place to reveal 3 random mobs!'
+    messages:
+      - '&7You found &e&l3x Mystery Mob Spawners&7!'
+
+  "4":
+    chance: 10.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+      - 'minecraft:execute as %player% at %player% run spawner'
+    display:
+      material: SPAWNER
+      name: '&e&l4x Mystery Spawners'
+      lore:
+        - '&7Place to reveal 4 random mobs!'
+    messages:
+      - '&7You found &e&l4x Mystery Mob Spawners&7!'
+
+  "5":
+    chance: 18.0
+    commands:
+      - 'simplecrates:crate give %player% elite 1'
+    display:
+      material: CHEST
+      name: '&b&lElite Crate Key'
+      lore:
+        - '&7Opens an Elite Crate!'
+    messages:
+      - '&7You found an &b&lElite Crate Key&7!'
+
+  "6":
+    chance: 14.0
+    commands:
+      - 'simplecrates:crate give %player% ultimate 1'
+    display:
+      material: CHEST
+      name: '&5&lUltimate Crate Key'
+      lore:
+        - '&7Opens an Ultimate Crate!'
+    messages:
+      - '&7You found an &5&lUltimate Crate Key&7!'
+
+  "7":
+    chance: 10.0
+    commands:
+      - 'simplecrates:crate give %player% legendary 1'
+    display:
+      material: CHEST
+      name: '&6&lLegendary Crate Key'
+      lore:
+        - '&7Opens a Legendary Crate!'
+    messages:
+      - '&7You found a &6&lLegendary Crate Key&7!'
+
+  "8":
+    chance: 6.0
+    commands:
+      - 'simplecrates:crate give %player% godly 1'
+    display:
+      material: CHEST
+      name: '&d&lGodly Crate Key'
+      lore:
+        - '&7Opens a Godly Crate!'
+    messages:
+      - '&7You found a &d&lGodly Crate Key&7!'
+
+  "9":
+    chance: 28.0
+    commands:
+      - 'rankvoucher give %player% warlord 1'
+    display:
+      material: BOOK
+      name: '&6&lWarlord Rank Voucher'
+      lore:
+        - '&7Redeem for Warlord rank!'
+    messages:
+      - '&7You received a &6&lWarlord Rank Voucher&7!'
+
+  "10":
+    chance: 16.0
+    commands:
+      - 'rankvoucher give %player% royalty 1'
+    display:
+      material: BOOK
+      name: '&6&lRoyalty Rank Voucher'
+      lore:
+        - '&7Redeem for Sovereign rank!'
+    messages:
+      - '&7You received a &6&lRoyalty Rank Voucher&7!'
+
+  "11":
+    chance: 16.0
+    commands:
+      - 'gkitgem give %player% tank'
+    display:
+      material: NETHER_STAR
+      name: '&6&lTank GKit Gem'
+      lore:
+        - '&7Powered by SimpleKits'
+    messages:
+      - '&7You found a &6&lTank GKit Gem&7!'
+
+  "12":
+    chance: 10.0
+    commands:
+      - 'gkitgem give %player% royalty'
+    display:
+      material: NETHER_STAR
+      name: '&6&lRoyalty GKit Gem'
+      lore:
+        - '&7Powered by SimpleKits'
+    messages:
+      - '&7You found a &6&lRoyalty GKit Gem&7!'
+
+  "13":
+    chance: 22.0
+    items:
+      "0":
+        material: NETHERITE_SWORD
+        name: '&5&lUltimate GKIT Piece &7- &fSword'
+        enchants:
+          SHARPNESS: 5
+          UNBREAKING: 3
+          FIRE_ASPECT: 2
+        lore:
+          - 'Vampiric III'
+          - 'Execute III'
+          - 'Deathbringer II'
+        amount: 1
+    messages:
+      - '&7You rolled a &5&lUltimate GKIT Sword Piece&7!'
+
+  "14":
+    chance: 20.0
+    items:
+      "0":
+        material: NETHERITE_HELMET
+        name: '&5&lUltimate GKIT Piece &7- &fHelmet'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          RESPIRATION: 3
+          AQUA_AFFINITY: 1
+        lore:
+          - 'Armored III'
+          - 'Tank II'
+          - 'Overload II'
+        amount: 1
+    messages:
+      - '&7You rolled a &5&lUltimate GKIT Helmet Piece&7!'
+
+  "15":
+    chance: 18.0
+    items:
+      "0":
+        material: NETHERITE_CHESTPLATE
+        name: '&5&lUltimate GKIT Piece &7- &fChestplate'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+        lore:
+          - 'Armored III'
+          - 'Overload III'
+          - 'Tank II'
+        amount: 1
+    messages:
+      - '&7You rolled a &5&lUltimate GKIT Chestplate Piece&7!'
+
+  "16":
+    chance: 16.0
+    items:
+      "0":
+        material: NETHERITE_LEGGINGS
+        name: '&5&lUltimate GKIT Piece &7- &fLeggings'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+        lore:
+          - 'Tank III'
+          - 'Armored II'
+        amount: 1
+    messages:
+      - '&7You rolled a &5&lUltimate GKIT Leggings Piece&7!'
+
+  "17":
+    chance: 16.0
+    items:
+      "0":
+        material: NETHERITE_BOOTS
+        name: '&5&lUltimate GKIT Piece &7- &fBoots'
+        enchants:
+          PROTECTION: 5
+          UNBREAKING: 3
+          FEATHER_FALLING: 4
+          DEPTH_STRIDER: 2
+        lore:
+          - 'Springs III'
+          - 'Anti Gravity II'
+        amount: 1
+    messages:
+      - '&7You rolled a &5&lUltimate GKIT Boots Piece&7!'
+
+  "18":
+    chance: 30.0
+    commands:
+      - 'give %player% enchanted_golden_apple 8'
+    display:
+      material: ENCHANTED_GOLDEN_APPLE
+      name: '&6&l8x Enchanted Golden Apples'
+      lore:
+        - '&7Click to claim!'
+    messages:
+      - '&7You found &6&l8x Enchanted Golden Apples&7!'
+
+  "19":
+    chance: 22.0
+    items:
+      "0":
+        material: EXPERIENCE_BOTTLE
+        name: '&b&lXP Bottle &7- 20,000 XP'
+        lore:
+          - '&7Right-click to consume'
+        amount: 1
+    messages:
+      - '&7You found a &b&l20,000 XP Bottle&7!'
+
+  "20":
+    chance: 14.0
+    commands:
+      - 'give %player% totem_of_undying 1'
+    display:
+      material: TOTEM_OF_UNDYING
+      name: '&6&lTotem of Undying'
+      lore:
+        - '&7Saves you from death!'
+    messages:
+      - '&7You found a &6&lTotem of Undying&7!'
+
+  "21":
+    chance: 12.0
+    commands:
+      - 'give %player% ancient_debris 2'
+    display:
+      material: ANCIENT_DEBRIS
+      name: '&5&l2x Ancient Debris'
+      lore:
+        - '&7Smelt into Netherite Scrap!'
+    messages:
+      - '&7You found &5&l2x Ancient Debris&7!'
+
+  "22":
+    chance: 10.0
+    commands:
+      - 'give %player% netherite_ingot 2'
+    display:
+      material: NETHERITE_INGOT
+      name: '&5&l2x Netherite Ingots'
+      lore:
+        - '&7Click to claim!'
+    messages:
+      - '&7You found &5&l2x Netherite Ingots&7!'
+
+  "23":
+    chance: 14.0
+    commands:
+      - 'gen give %player% fat_water_bucket 2'
+    display:
+      material: BUCKET
+      name: '&b&l2x Fat Water Buckets'
+      lore:
+        - '&7Generates water gens!'
+    messages:
+      - '&7You found &b&l2x Fat Water Buckets&7!'
+
+  "24":
+    chance: 12.0
+    commands:
+      - 'gen give %player% fat_lava_bucket 2'
+    display:
+      material: BUCKET
+      name: '&6&l2x Fat Lava Buckets'
+      lore:
+        - '&7Generates lava gens!'
+    messages:
+      - '&7You found &6&l2x Fat Lava Buckets&7!'
+
+  "25":
+    chance: 8.0
+    commands:
+      - 'gen give %player% lava_gen_bucket 2'
+    display:
+      material: BUCKET
+      name: '&c&l2x Lava Gen Buckets'
+      lore:
+        - '&7Generates lava!'
+    messages:
+      - '&7You found &c&l2x Lava Gen Buckets&7!'
+
+  "26":
+    chance: 7.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f sellwand'
+    display:
+      material: STICK
+      name: '&6&lSell Wand'
+      lore:
+        - '&7Sells inventory contents!'
+    messages:
+      - '&7You found a &6&lSell Wand&7!'
+
+  "27":
+    chance: 7.0
+    commands:
+      - 'minecraft:execute as %player% at %player% run f tntwand'
+    display:
+      material: TNT
+      name: '&c&lTNT Wand'
+      lore:
+        - '&7Launches TNT at walls!'
+    messages:
+      - '&7You found a &c&lTNT Wand&7!'
+
+  "28":
+    chance: 3.0
+    commands:
+      - 'fegiveitem nametag %player% 1'
+    display:
+      material: NAME_TAG
+      name: '&6&lName Tag'
+      lore:
+        - '&7Rename any item with custom colours!'
+    messages:
+      - '&7You found a &6&lName Tag&7 in the Ultimate Supply Crate!'
+
+  "29":
+    chance: 5.0
+    commands:
+      - 'fegiveitem whitescroll %player% 1'
+    display:
+      material: MAP
+      name: '&f&lWhite Scroll'
+      lore:
+        - '&7Protects gear from book destruction!'
+    messages:
+      - '&7You found a &f&lWhite Scroll&7 in the Ultimate Supply Crate!'
+
+  "30":
+    chance: 4.0
+    commands:
+      - 'fegiveitem soulgem %player% 1000'
+    display:
+      material: EMERALD
+      name: '&c&l Soul Gem &8[1000 souls]'
+      lore:
+        - '&7Toggle SOUL enchants ON/OFF!'
+        - '&c1000 &7soul charges'
+    messages:
+      - '&7You found a &c&l Soul Gem &7(1000 charges) in the Ultimate Supply Crate!'
